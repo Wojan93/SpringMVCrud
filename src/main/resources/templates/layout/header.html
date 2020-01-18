@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8"/>
+    <link th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}"
+          href="http://cdn.jsdelivr.net/webjars/bootstrap/4.3.1/css/bootstrap.min.css"
+          rel="stylesheet" media="screen" />
+    <link rel="stylesheet" th:href="@{/css/style.css}" href="../../static/css/style.css" />
+</head>
+<body>
+
+<div class="container">
+    <div th:fragment="header">
+        <nav class="navbar navbar-dark bg-primary">
+            <div>
+                <div>
+                    <a class="navbar-brand" href="#" th:href="@{/}">Home</a>
+                    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                        <li><a class="nav-link" th:href="@{/cars}">Zobacz Ogłoszenia</a></li>
+                        <li><a class="nav-link"th:href="@{/cars/add}">Dodaj Ogłoszenie</a></li>
+                        <li><a class="nav-link"th:href="@{/login}">Zaloguj</a></li>
+                        <li><a class="nav-link"th:href="@{/logout}">Wyloguj</a></li>
+                        <li><a class="nav-link"th:href="@{/register}">Zarejestruj</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="jumbotron">
+            <div>
+                <div>
+                    <h2 class="text-center">Moto Market Application</h2>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <img src="../../static/images/Cars.jpg" width="30%"
+                     th:src="@{/images/Cars.jpg}" />
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+</body>
+</html>

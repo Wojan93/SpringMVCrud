@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <title>Cars</title>
+    <th:block th:include="layout/header"></th:block>
+</head>
+<body>
+<div class="container">
+    <div th:if="${not #lists.isEmpty(cars)}">
+        <h2>All Cars</h2>
+        <table class="table table-striped">
+            <tr>
+                <th>Id</th>
+                <th>Company</th>
+                <th>Model</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>VinNumber</th>
+                <th>Colour</th>
+                <th>Year</th>
+                <th>Motor Capacity</th>
+                <th>Fuel Type</th>
+                <th>Kilometers</th>
+                <th>Safety Lock</th>
+                <th>Alu Wheels</th>
+            </tr>
+            <tr th:each="car : ${cars}">
+                <td th:text="${car.id}">Id</td>
+                <td th:text="${car.company}">Company</td>
+                <td th:text="${car.model}">Model</td>
+                <td th:text="${car.name}">Name</td>
+                <td th:text="${car.price}">Price</td>
+                <td th:text="${car.vinNumber}">Vin Number</td>
+                <td th:text="${car.colour}">Colour</td>
+                <td th:text="${car.year}">Year</td>
+                <td th:text="${car.motorCapacity}">Motor Capacity</td>
+                <td th:text="${car.fuelType}">Fuel type</td>
+                <td th:text="${car.kilometers}">Kilometers</td>
+                <td th:text="${car.safetyLock}">Safety Lock</td>
+                <td th:text="${car.aluWheels}">Alu Wheels</td>
+                <td><a th:href="${'/cars/edit/' + car.id}" class="btn btn-warning">Edit</a></td>
+                <td><a th:href="${'/cars/delete/' + car.id}" class="btn btn-danger">Delete</a></td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Rejestrowanie</title>
+    <th:block th:include="layout/header"></th:block>
+</head>
+<body>
+
+<div class="container">
+    <h1>Rejestracja</h1>
+<form method="POST" th:action="@{/register}" id="registerForm">
+    <label for="username" id="username" >Nazwa użytkownika: </label>
+    <input type="text" name="username" class="form-control"/><br/>
+
+    <label for="email" id="email" >Adres email: </label>
+    <input type="text" name="email" class="form-control"/><br/>
+
+    <label for="password" id="password">Hasło: </label>
+    <input type="password" name="password" class="form-control"/><br/>
+
+    <label for="confirm" id="confirm">Potwierdź hasło: </label>
+    <input type="password" name="confirm" class="form-control"/><br/>
+
+    <label for="fullname" id="fullname">Imię i nazwisko: </label>
+    <input type="text" name="fullname" class="form-control"/><br/>
+
+    <label for="street" id="street">Ulica: </label>
+    <input type="text" name="street" class="form-control"/><br/>
+
+    <label for="city" id="city">Miejscowość: </label>
+    <input type="text" name="city" class="form-control"/><br/>
+
+    <label for="state" id="state">Województwo: </label>
+    <input type="text" name="state" class="form-control"/><br/>
+
+    <label for="zip" id="zip">Kod pocztowy: </label>
+    <input type="text" name="zip" class="form-control"/><br/>
+
+    <label for="phone" id="phone">Telefon: </label>
+    <input type="text" name="phone" class="form-control"/><br/>
+
+    <input type="submit" class="btn btn-success" value="Zarejestruj"/>
+
+</form>
+</div>
+
+</body>
+</html>
