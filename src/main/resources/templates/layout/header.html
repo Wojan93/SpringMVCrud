@@ -11,16 +11,17 @@
 
 <div class="container">
     <div th:fragment="header">
-        <nav class="navbar navbar-dark bg-primary">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div>
                 <div>
-                    <a class="navbar-brand" href="#" th:href="@{/}">Home</a>
                     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                        <li><a class="navbar-brand" href="#" th:href="@{/}">Home</a></li>
                         <li><a class="nav-link" th:href="@{/cars}">Zobacz Ogłoszenia</a></li>
                         <li><a class="nav-link"th:href="@{/cars/add}">Dodaj Ogłoszenie</a></li>
+                        <li><a class="nav-link"th:href="@{/admin}">Admin</a></li>
                         <li><a class="nav-link"th:href="@{/login}">Zaloguj</a></li>
-                        <li><a class="nav-link"th:href="@{/logout}">Wyloguj</a></li>
                         <li><a class="nav-link"th:href="@{/register}">Zarejestruj</a></li>
+                        <li><a class="nav-link"th:href="@{/logout}">Wyloguj</a></li>
                     </ul>
                 </div>
             </div>

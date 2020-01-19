@@ -17,4 +17,9 @@ public class LogoutController {
         return "login";
     }
 
+    @RequestMapping(path = "/admin")
+    public String admin() {
+        return "admin";
+    }
+
 }

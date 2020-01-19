@@ -7,6 +7,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.StandardPasswordEncoder;
@@ -23,40 +24,42 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/", "/**")
-                .access("hasRole('ROLE_USER')")
-                .antMatchers("/", "/**").access("permitAll")
-
+                .antMatchers("/index.html").permitAll()
+                .antMatchers("/cars","/cars/**","/admin").authenticated()
+                .antMatchers("/admin").hasRole("ADMIN")
                 .and()
                 .formLogin()
                 .loginPage("/login")
                 .defaultSuccessUrl("/cars")
                 .and()
                 .csrf()
-                .ignoringAntMatchers("/h2-console/**")
+                .ignoringAntMatchers("/h2/**")
                 .and()
                 .logout()
                 .logoutSuccessUrl("/logout")
                 .and()
                 .headers()
                 .frameOptions()
-                .sameOrigin();
-
+                .sameOrigin()
+                .and()
+                .httpBasic();
     }
-
-    @Bean
-    public PasswordEncoder encoder() {
-        return new StandardPasswordEncoder("53cr3t");
-    }
-
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth)
             throws Exception {
 
         auth
-                .userDetailsService(userDetailsService)
-                .passwordEncoder(encoder());
+               .inMemoryAuthentication()
+                .withUser("admin").password(passwordEncoder().encode("admin123")).roles("ADMIN")
+                .and()
+                .withUser("woj").password(passwordEncoder().encode("woj123")).roles("USER");
 
     }
+
+    @Bean
+    PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
 }

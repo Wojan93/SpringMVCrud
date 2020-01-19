@@ -23,7 +23,7 @@ public class Car {
     private String vinNumber;
     private String colour;
     private Double price;
-    private Year year;
+    private int year;
     private int motorCapacity;
     private String fuelType;
     private Double kilometers;
@@ -89,12 +89,12 @@ public class Car {
         this.price = price;
     }
 
-    public Year getYear() {
+    public int getYear() {
         return year;
     }
 
     public void setYear(int year) {
-        this.year = Year.of(year);
+        this.year = year;
     }
 
     public int getMotorCapacity() {

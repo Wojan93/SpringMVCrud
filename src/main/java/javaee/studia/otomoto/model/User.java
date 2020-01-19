@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.*;
 import java.util.Arrays;
 import java.util.Collection;
 
@@ -23,14 +24,31 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @NotNull
+    @Size(min=2, max=30, message = "Nazwa musi zawierać od 2 do 30 znaków")
     private String username;
+    @NotNull
+    @Email
     private String email;
+    @NotNull
     private String password;
+    @NotNull
+    @Size(min=2, max=80, message = "Nazwa musi zawierać od 2 do 80 znaków")
     private String fullname;
+    @NotNull
+    @Size(min=4, max=60, message = "Nazwa musi zawierać od 4 do 60 znaków")
     private String street;
+    @NotNull
+    @Size(min=2, max=30, message = "Nazwa musi zawierać od 2 do 30 znaków")
     private String city;
+    @NotNull
+    @Size(min=5, max=30, message = "Nazwa musi zawierać od 5 do 30 znaków")
     private String state;
+    @NotNull
+    @Pattern(regexp = "^[0-9][0-9][-][0-9][0-9][0-9]$")
     private String zip;
+    @NotNull
+    @Digits(integer = 12, fraction = 0, message = "Numer musi zawierać od 7 do 12 znaków")
     private String phoneNumber;
 
     public User(String username, String email, String password, String fullname, String street, String city, String state, String zip, String phoneNumber) {
