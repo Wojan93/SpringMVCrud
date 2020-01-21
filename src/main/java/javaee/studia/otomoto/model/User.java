@@ -17,30 +17,12 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
     @Column(nullable = false)
     @Size(min = 2, max = 30, message = "Nazwa musi zawierać od 2 do 30 znaków")
     private String username;
     @Column(nullable = false)
     @Email
     private String email;
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     @Column(nullable = false)
     private String password;
     @Column(nullable = false)
@@ -61,11 +43,8 @@ public class User {
     @Column(nullable = false)
     @Digits(integer = 12, fraction = 0, message = "Numer musi zawierać od 7 do 12 znaków")
     private String phoneNumber;
-
     private int active;
-
     private String roles = "";
-
     private String permissions = "";
 
     public User() {
@@ -81,6 +60,9 @@ public class User {
         this.state = state;
         this.zip = zip;
         this.phoneNumber = phoneNumber;
+        this.roles = "USER";
+        this.permissions = "ACCESS_TEST1";
+        this.active = 1;
     }
 
     public User(String username, String email, String password, String fullname, String street, String city, String state, String zip, String phoneNumber, String roles, String permissions) {
@@ -96,6 +78,22 @@ public class User {
         this.roles = roles;
         this.permissions = permissions;
         this.active = 1;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public int getActive() {
