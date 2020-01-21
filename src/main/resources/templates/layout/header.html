@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
     <head lang="en">
         <meta http-equiv="Content-Type" content="text/html" charset="UTF-8"/>
         <link th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}"
@@ -21,21 +23,28 @@
                                 <li>
                                     <a class="nav-link" th:href="@{/cars}">Zobacz Ogłoszenia</a>
                                 </li>
-                                <li>
+                                <li sec:authorize="isAuthenticated()">
                                     <a class="nav-link" th:href="@{/cars/add}">Dodaj Ogłoszenie</a>
                                 </li>
-                                <li>
+                                <li sec:authorize="hasRole('ROLE_ADMIN')">
                                     <a class="nav-link" th:href="@{/admin}">Admin</a>
                                 </li>
                                 <li>
-                                    <a class="nav-link" th:href="@{/login}">Zaloguj</a>
+                                    <a sec:authorize="isAnonymous()" class="nav-link" th:href="@{/register}">
+                                        Zarejestruj
+                                    </a>
                                 </li>
                                 <li>
-                                    <a class="nav-link" th:href="@{/register}">Zarejestruj</a>
+                                    <form sec:authorize="isAnonymous()" th:action="@{/login}" class="form-inline my-2 my-lg-0" form-method="post" id="login">
+                                        <button
+                                                class="btn btn-outline-danger my-2 my-sm-0 btn-sm" type="submit">Zaloguj
+                                        </button>
+                                    </form>
                                 </li>
                                 <li>
-                                    <form class="form-inline my-2 my-lg-0" form-method="post" th:action="@{/logout}">
-                                        <button class="btn btn-outline-danger my-2 my-sm-0 btn-sm" type="submit">Wyloguj
+                                    <form sec:authorize="isAuthenticated()"  th:action="@{/logout}" class="form-inline my-2 my-lg-0" form-method="post"  id="logout">
+                                        <button
+                                               class="btn btn-outline-danger my-2 my-sm-0 btn-sm" type="submit">Wyloguj
                                         </button>
                                     </form>
                                 </li>

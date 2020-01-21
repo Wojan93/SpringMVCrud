@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.password.StandardPasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @SuppressWarnings("deprecation")
 @Configuration
@@ -29,27 +30,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/admin").hasRole("ADMIN")
                 .antMatchers("/management").hasAnyRole("ADMIN","MANAGER")
-                .antMatchers("/cars","/cars/**").authenticated()
+                .antMatchers("/cars").authenticated()
                 .antMatchers("/index.html").permitAll()
                 .antMatchers("/api/public/test1").hasAuthority("ACCESS_TEST1")
                 .antMatchers("/api/public/test2").hasAuthority("ACCESS_TEST2")
                 .antMatchers("/api/public/users").hasRole("ADMIN")
                 .and()
                 .formLogin()
-                .loginPage("/login")
+                .loginPage("/login").permitAll()
                 .defaultSuccessUrl("/cars")
                 .and()
+                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login")
+                .and()
                 .csrf()
-                .ignoringAntMatchers("/h2/**")
-                .and()
-                .logout()
-                .logoutSuccessUrl("/logout")
-                .and()
-                .headers()
-                .frameOptions()
-                .sameOrigin()
-                .and()
-                .httpBasic();
+                .ignoringAntMatchers("/h2/**");
+
     }
 
     @Override

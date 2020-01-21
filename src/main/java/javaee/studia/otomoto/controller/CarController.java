@@ -20,10 +20,7 @@ public class CarController {
         this.carRepository = carRepository;
     }
 
-    @RequestMapping(path = "/")
-    public String index() {
-        return "index";
-    }
+
 
     @RequestMapping(path = "/cars/add", method = RequestMethod.GET)
     public String createProduct(Model model) {

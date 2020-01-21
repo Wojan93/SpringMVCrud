@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head lang="en">
     <title>Cars</title>
     <th:block th:include="layout/header"></th:block>
@@ -38,8 +38,8 @@
                 <td th:text="${car.kilometers}">Kilometers</td>
                 <td th:text="${car.safetyLock}">Safety Lock</td>
                 <td th:text="${car.aluWheels}">Alu Wheels</td>
-                <td><a th:href="${'/cars/edit/' + car.id}" class="btn btn-warning">Edit</a></td>
-                <td><a th:href="${'/cars/delete/' + car.id}" class="btn btn-danger">Delete</a></td>
+                <td><a sec:authorize="hasRole('ROLE_ADMIN')" th:href="${'/cars/edit/' + car.id}" class="btn btn-warning">Edit</a></td>
+                <td><a th:href="${'/cars/delete/' + car.id}" class="btn btn-danger">Buy</a></td>
             </tr>
         </table>
     </div>
