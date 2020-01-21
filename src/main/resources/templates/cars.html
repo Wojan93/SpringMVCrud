@@ -10,7 +10,7 @@
         <h2>All Cars</h2>
         <table class="table table-striped">
             <tr>
-                <th>Id</th>
+                <th sec:authorize="hasRole('ROLE_ADMIN')" >Id</th>
                 <th>Company</th>
                 <th>Model</th>
                 <th>Name</th>
@@ -25,7 +25,7 @@
                 <th>Alu Wheels</th>
             </tr>
             <tr th:each="car : ${cars}">
-                <td th:text="${car.id}">Id</td>
+                <td sec:authorize="hasRole('ROLE_ADMIN')"  th:text="${car.id}">Id</td>
                 <td th:text="${car.company}">Company</td>
                 <td th:text="${car.model}">Model</td>
                 <td th:text="${car.name}">Name</td>
