@@ -1,12 +1,17 @@
 package javaee.studia.otomoto.model;
 
-import org.hibernate.annotations.GenericGenerator;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.time.Year;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+import org.hibernate.annotations.GenericGenerator;
 
 
 @Entity
@@ -17,17 +22,38 @@ public class Car {
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "system-uuid")
     @GenericGenerator(name = "system-uuid", strategy = "uuid2")
     private String id;
+    
+    @NotNull(message = "is required")
     private String company;
+    @NotNull(message = "is required")
     private String model;
+    @NotNull(message = "is required")
     private String name;
+    @NotNull(message = "is required")
     private String vinNumber;
+    @NotNull(message = "is required")
     private String colour;
+    
+    @NotNull(message = "is required")
     private Double price;
+    
+//    @Digits(fraction = 0, integer = 4, message = "must be 4 digits")
+    @NotNull(message = "is required")
+	@Min(value = 1900, message = "must be greater than 1900 and less than 2020")
+    @Max(value = 2020, message = "must be greater than 1900 and less than 2020")
     private int year;
+    
+    @NotNull(message = "is required")
+    @Min(value = 1, message = "must be valid")
     private int motorCapacity;
+    
+    @NotNull(message = "is required")
     private String fuelType;
+    @NotNull(message = "is required")
     private Double kilometers;
+    @NotNull(message = "is required")
     private Boolean safetyLock;
+    @NotNull(message = "is required")
     private Boolean aluWheels;
 
     public Car() {

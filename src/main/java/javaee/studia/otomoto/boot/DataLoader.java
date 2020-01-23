@@ -23,6 +23,7 @@ public class DataLoader implements CommandLineRunner {
         car1.setCompany("Audi");
         car1.setModel("A4");
         car1.setName("Doskonala");
+        car1.setColour("Red");
         car1.setVinNumber("VVZ0010012003040");
         car1.setPrice(24999.00);
         car1.setYear(2008);
@@ -38,6 +39,7 @@ public class DataLoader implements CommandLineRunner {
         car2.setCompany("Volkswagen");
         car2.setModel("Passat");
         car2.setName("Igla");
+        car2.setColour("Blue");
         car2.setVinNumber("VWE4440012003040");
         car2.setPrice(13999.00);
         car2.setYear(2008);

@@ -1,99 +1,162 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head lang="en">
-    <title>Edit Product Details</title>
-    <th:block th:include="layout/header"></th:block>
+<title>Edit Product Details</title>
+<th:block th:include="layout/header"></th:block>
 </head>
 <body>
-<div class="container">
-    <h2>Edit Product Details</h2>
-    <div>
-        <form class="form-horizontal" th:object="${car}" th:action="@{/cars}" method="post">
-            <div class="form-group">
-                <div class="col-sm-10">
-                    <input type="hidden" class="form-control" th:field="*{id}"/>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-2 control-label">Company:</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" th:field="*{company}" />
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-2 control-label">Model:</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" th:field="*{model}" />
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-2 control-label">Name:</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" th:field="*{name}" />
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-2 control-label">Price:</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" th:field="*{price}" />
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-2 control-label">Vin Number:</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" th:field="*{vinNumber}" />
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-2 control-label">Colour:</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" th:field="*{colour}" />
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-2 control-label">Year:</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" th:field="*{year}" />
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-2 control-label">Motor Capacity:</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" th:field="*{motorCapacity}" />
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-2 control-label">Fuel Type:</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" th:field="*{fuelType}" />
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-2 control-label">Kilometers:</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" th:field="*{kilometers}" />
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-2 control-label">Safety Lock:</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" th:field="*{safetyLock}" />
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-2 control-label">Alu Wheels: </label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" th:field="*{aluWheels}" />
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-2">
-                    <button type="submit" class="btn btn-primary">Save</button>
-                </div>
-            </div>
+	<div class="container">
+		<h2>Edit Product Details</h2>
+		<div>
+			<form class="form-horizontal" th:object="${car}" th:action="@{/cars}"
+				method="post">
+				<div class="form-group">
+					<div class="col-sm-10">
+						<input type="hidden" class="form-control" th:field="*{id}" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Company:</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" th:field="*{company}" />
+					</div>
+				</div>
+				<div th:if="${#fields.hasErrors('company')}"
+					class="error">
+					<a th:each="err : ${#fields.errors('company')}" th:text="${err}" /></a>
+				</div>
 
-        </form>
-    </div>
-</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Model:</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" th:field="*{model}" />
+					</div>
+				</div>
+				<div th:if="${#fields.hasErrors('model')}"
+					class="error">
+					<a th:each="err : ${#fields.errors('model')}" th:text="${err}" /></a>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Name:</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" th:field="*{name}" />
+					</div>
+				</div>
+				<div th:if="${#fields.hasErrors('name')}"
+					class="error">
+					<a th:each="err : ${#fields.errors('name')}" th:text="${err}" /></a>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Price:</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" th:field="*{price}" />
+					</div>
+				</div>
+				<div th:if="${#fields.hasErrors('price')}"
+					class="error">
+					<a th:each="err : ${#fields.errors('price')}" th:text="${err}" /></a>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Vin Number:</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" th:field="*{vinNumber}" />
+					</div>
+				</div>
+				<div th:if="${#fields.hasErrors('vinNumber')}"
+					class="error">
+					<a th:each="err : ${#fields.errors('vinNumber')}" th:text="${err}" /></a>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Colour:</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" th:field="*{colour}" />
+					</div>
+				</div>
+				<div th:if="${#fields.hasErrors('colour')}"
+					class="error">
+					<a th:each="err : ${#fields.errors('colour')}" th:text="${err}" /></a>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Year:</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" th:field="*{year}" />
+					</div>
+				</div>
+				<div th:if="${#fields.hasErrors('year')}"
+					class="error">
+					<a th:each="err : ${#fields.errors('year')}" th:text="${err}" /></a>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Motor Capacity:</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control"
+							th:field="*{motorCapacity}" />
+					</div>
+				</div>
+				<div th:if="${#fields.hasErrors('motorCapacity')}"
+					class="error">
+					<a th:each="err : ${#fields.errors('motorCapacity')}" th:text="${err}" /></a>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Fuel Type:</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" th:field="*{fuelType}" />
+					</div>
+				</div>
+				<div th:if="${#fields.hasErrors('fuelType')}"
+					class="error">
+					<a th:each="err : ${#fields.errors('fuelType')}" th:text="${err}" /></a>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Kilometers:</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" th:field="*{kilometers}" />
+					</div>
+				</div>
+				<div th:if="${#fields.hasErrors('kilometers')}"
+					class="error">
+					<a th:each="err : ${#fields.errors('kilometers')}" th:text="${err}" /></a>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Safety Lock:</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" th:field="*{safetyLock}" />
+					</div>
+				</div>
+				<div th:if="${#fields.hasErrors('safetyLock')}"
+					class="error">
+					<a th:each="err : ${#fields.errors('safetyLock')}" th:text="${err}" /></a>
+				</div>
+				
+				
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Alu Wheels: </label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" th:field="*{aluWheels}" />
+					</div>
+				</div>
+				<div th:if="${#fields.hasErrors('aluWheels')}"
+					class="error">
+					<a th:each="err : ${#fields.errors('aluWheels')}" th:text="${err}" /></a>
+				</div>
+				
+				<div class="form-group">
+					<div class="col-sm-2">
+						<button type="submit" class="btn btn-primary">Save</button>
+					</div>
+				</div>
+
+			</form>
+		</div>
+	</div>
 </body>
 </html>
