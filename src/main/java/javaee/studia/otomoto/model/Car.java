@@ -36,11 +36,10 @@ public class Car {
     
     @NotNull(message = "is required")
     private Double price;
-    
-//    @Digits(fraction = 0, integer = 4, message = "must be 4 digits")
+
     @NotNull(message = "is required")
-	@Min(value = 1900, message = "must be greater than 1900 and less than 2020")
-    @Max(value = 2020, message = "must be greater than 1900 and less than 2020")
+	@Min(value = 1900, message = "must be greater than 1900 and less than 2021")
+    @Max(value = 2020, message = "must be greater than 1900 and less than 2021")
     private int year;
     
     @NotNull(message = "is required")

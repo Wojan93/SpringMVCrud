@@ -18,30 +18,22 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Column(nullable = false)
-    @Size(min = 2, max = 30, message = "Nazwa musi zawierać od 2 do 30 znaków")
     private String username;
     @Column(nullable = false)
-    @Email
     private String email;
     @Column(nullable = false)
     private String password;
     @Column(nullable = false)
-    @Size(min = 2, max = 80, message = "Nazwa musi zawierać od 2 do 80 znaków")
     private String fullname;
     @Column(nullable = false)
-    @Size(min = 4, max = 60, message = "Nazwa musi zawierać od 4 do 60 znaków")
     private String street;
     @Column(nullable = false)
-    @Size(min = 2, max = 30, message = "Nazwa musi zawierać od 2 do 30 znaków")
     private String city;
     @Column(nullable = false)
-    @Size(min = 5, max = 30, message = "Nazwa musi zawierać od 5 do 30 znaków")
     private String state;
     @Column(nullable = false)
-    @Pattern(regexp = "^[0-9][0-9][-][0-9][0-9][0-9]$")
     private String zip;
     @Column(nullable = false)
-    @Digits(integer = 12, fraction = 0, message = "Numer musi zawierać od 7 do 12 znaków")
     private String phoneNumber;
     private int active;
     private String roles = "";

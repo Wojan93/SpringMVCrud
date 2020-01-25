@@ -10,36 +10,72 @@
 
 <div class="container">
     <h1>Rejestracja</h1>
-<form method="POST" th:action="@{/register}" id="registerForm">
+<form method="POST" th:action="@{/register}" id="registerForm" th:object="${registerForm}">
     <label for="username" id="username" >Nazwa użytkownika: </label>
-    <input type="text" name="username" class="form-control"/><br/>
+    <input type="text" th:field="*{username}" class="form-control"/><br/>
+    <div th:if="${#fields.hasErrors('username')}"
+         class="error">
+        <a th:each="err : ${#fields.errors('username')}" th:text="${err}" /></a>
+    </div>
 
     <label for="email" id="email" >Adres email: </label>
-    <input type="text" name="email" class="form-control"/><br/>
+    <input type="text" th:field="*{email}" class="form-control"/><br/>
+    <div th:if="${#fields.hasErrors('email')}"
+         class="error">
+        <a th:each="err : ${#fields.errors('email')}" th:text="${err}" /></a>
+    </div>
 
     <label for="password" id="password">Hasło: </label>
-    <input type="password" name="password" class="form-control"/><br/>
+    <input type="password" th:field="*{password}" class="form-control"/><br/>
+    <div th:if="${#fields.hasErrors('password')}"
+         class="error">
+        <a th:each="err : ${#fields.errors('password')}" th:text="${err}" /></a>
+    </div>
 
     <label for="confirm" id="confirm">Potwierdź hasło: </label>
     <input type="password" name="confirm" class="form-control"/><br/>
 
     <label for="fullname" id="fullname">Imię i nazwisko: </label>
-    <input type="text" name="fullname" class="form-control"/><br/>
+    <input type="text" th:field="*{fullname}" class="form-control"/><br/>
+    <div th:if="${#fields.hasErrors('fullname')}"
+         class="error">
+        <a th:each="err : ${#fields.errors('fullname')}" th:text="${err}" /></a>
+    </div>
 
     <label for="street" id="street">Ulica: </label>
-    <input type="text" name="street" class="form-control"/><br/>
+    <input type="text" th:field="*{street}" class="form-control"/><br/>
+    <div th:if="${#fields.hasErrors('street')}"
+         class="error">
+        <a th:each="err : ${#fields.errors('street')}" th:text="${err}" /></a>
+    </div>
 
     <label for="city" id="city">Miejscowość: </label>
-    <input type="text" name="city" class="form-control"/><br/>
+    <input type="text" th:field="*{city}" class="form-control"/><br/>
+    <div th:if="${#fields.hasErrors('city')}"
+         class="error">
+        <a th:each="err : ${#fields.errors('city')}" th:text="${err}" /></a>
+    </div>
 
     <label for="state" id="state">Województwo: </label>
-    <input type="text" name="state" class="form-control"/><br/>
+    <input type="text" th:field="*{state}" class="form-control"/><br/>
+    <div th:if="${#fields.hasErrors('state')}"
+         class="error">
+        <a th:each="err : ${#fields.errors('state')}" th:text="${err}" /></a>
+    </div>
 
     <label for="zip" id="zip">Kod pocztowy: </label>
-    <input type="text" name="zip" class="form-control"/><br/>
+    <input type="text" th:field="*{zip}" class="form-control"/><br/>
+    <div th:if="${#fields.hasErrors('zip')}"
+         class="error">
+        <a th:each="err : ${#fields.errors('zip')}" th:text="${err}" /></a>
+    </div>
 
     <label for="phone" id="phone">Telefon: </label>
-    <input type="text" name="phone" class="form-control"/><br/>
+    <input type="text" th:field="*{phone}" class="form-control"/><br/>
+    <div th:if="${#fields.hasErrors('phone')}"
+         class="error">
+        <a th:each="err : ${#fields.errors('phone')}" th:text="${err}" /></a>
+    </div>
 
     <input type="submit" class="btn btn-success" value="Zarejestruj"/>
 
