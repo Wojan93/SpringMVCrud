@@ -17,6 +17,9 @@
          class="error">
         <a th:each="err : ${#fields.errors('username')}" th:text="${err}" /></a>
     </div>
+    <div th:if="${registrationError}" class="error">
+        <a th:each="err : ${registrationError}" th:text="${err}" /></a>
+    </div>
 
     <label for="email" id="email" >Adres email: </label>
     <input type="text" th:field="*{email}" class="form-control"/><br/>

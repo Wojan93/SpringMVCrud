@@ -55,5 +55,9 @@ public class RegistrationForm {
         return new User(username, email, passwordEncoder.encode(password), fullname, street, city, state, zip, phone);
     }
 
+
+    public String getUsername() {
+        return username;
+    }
 }
 

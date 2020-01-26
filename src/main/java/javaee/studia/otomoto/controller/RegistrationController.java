@@ -1,6 +1,7 @@
 package javaee.studia.otomoto.controller;
 
 
+import javaee.studia.otomoto.model.User;
 import javaee.studia.otomoto.repository.UserRepository;
 import javaee.studia.otomoto.security.RegistrationForm;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
@@ -40,20 +41,27 @@ public class RegistrationController {
     }
 
     @PostMapping
-    public String processRegistration(@Valid @ModelAttribute("registerForm") RegistrationForm form, BindingResult bindingResult) {
+    public String processRegistration(@Valid @ModelAttribute("registerForm") RegistrationForm form, BindingResult bindingResult, Model model) {
+
+        String userName = form.getUsername();
 
         if (bindingResult.hasErrors()) {
             return "registration";
-        }else {
-            userRepo.save(form.toUser(passwordEncoder));
-            return "redirect:/login";
         }
 
+        // check the database if user already exists
+        User existingUser = userRepo.findByUsername(userName);
+        if (existingUser != null) {
+            model.addAttribute("regUser", new RegistrationForm());
+            model.addAttribute("registrationError", "User name already exists. Choose another.");
+
+            return "registration";
+        }
+
+        userRepo.save(form.toUser(passwordEncoder));
+        return "redirect:/login";
+
     }
-
-
-
-
 
 
 
