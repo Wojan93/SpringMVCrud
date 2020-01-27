@@ -60,13 +60,13 @@ public class CarController {
     }
 
     @RequestMapping(path = "/cars/edit/{id}", method = RequestMethod.GET)
-    public String editCar(Model model, @PathVariable(value = "id") String id) {
+    public String editCar(Model model, @PathVariable(value = "id") Long id) {
         model.addAttribute("car", carRepository.findById(id));
         return "edit";
     }
 
     @RequestMapping(path = "/cars/delete/{id}", method = RequestMethod.GET)
-    public String deleteCar(@PathVariable(name = "id") String id) {
+    public String deleteCar(@PathVariable(name = "id") Long id) {
         carRepository.deleteById(id);
         return "redirect:/cars";
     }
