@@ -25,6 +25,10 @@ public class RegistrationForm {
     private String password;
 
     @NotNull(message = "is required")
+    @Size(min = 3, message = "at least 3 signs")
+    private String passwordConfirmation;
+
+    @NotNull(message = "is required")
     @Size(min = 2, message = "at least 2 signs")
     private String fullname;
 
@@ -58,6 +62,14 @@ public class RegistrationForm {
 
     public String getUsername() {
         return username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getPasswordConfirmation() {
+        return passwordConfirmation;
     }
 }
 

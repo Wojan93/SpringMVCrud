@@ -49,6 +49,12 @@ public class RegistrationController {
             return "registration";
         }
 
+        if (!form.getPassword().equals(form.getPasswordConfirmation())) {
+            model.addAttribute("registrationErrorDiffPass", "Passwords must be the same");
+
+            return "registration";
+        }
+
         // check the database if user already exists
         User existingUser = userRepo.findByUsername(userName);
         if (existingUser != null) {

@@ -34,9 +34,16 @@
          class="error">
         <a th:each="err : ${#fields.errors('password')}" th:text="${err}" /></a>
     </div>
+    <div th:if="${registrationErrorDiffPass}" class="error">
+        <a th:each="err : ${registrationErrorDiffPass}" th:text="${err}" /></a>
+    </div>
 
-    <label for="confirm" id="confirm">Potwierdź hasło: </label>
-    <input type="password" name="confirm" class="form-control"/><br/>
+    <label for="passwordConfirmation" id="passwordConfirmation">Potwierdź hasło: </label>
+    <input type="password" name="passwordConfirmation" class="form-control"/><br/>
+    <div th:if="${#fields.hasErrors('passwordConfirmation')}"
+         class="error">
+        <a th:each="err : ${#fields.errors('passwordConfirmation')}" th:text="${err}" /></a>
+    </div>
 
     <label for="fullname" id="fullname">Imię i nazwisko: </label>
     <input type="text" th:field="*{fullname}" class="form-control"/><br/>
