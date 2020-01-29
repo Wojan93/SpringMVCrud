@@ -21,7 +21,7 @@
         <a th:each="err : ${registrationError}" th:text="${err}" /></a>
     </div>
 
-    <label for="email" id="email" >Adres email: </label>
+    <label for="email" id="email" >Adres email (na adres zostanie wysłane potwierdzenie założenia konta): </label>
     <input type="text" th:field="*{email}" class="form-control"/><br/>
     <div th:if="${#fields.hasErrors('email')}"
          class="error">
