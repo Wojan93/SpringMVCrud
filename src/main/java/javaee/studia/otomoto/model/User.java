@@ -72,6 +72,8 @@ public class User {
         this.active = 1;
     }
 
+    public Long getId() { return id;}
+
     public String getPassword() {
         return password;
     }

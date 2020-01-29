@@ -55,6 +55,10 @@ public class Car {
     @NotNull(message = "is required")
     private Boolean aluWheels;
 
+    private Long seller;
+
+    private Long buyer;
+
     public Car() {
     }
 
@@ -162,5 +166,19 @@ public class Car {
         this.aluWheels = aluWheels;
     }
 
+    public Long getSeller() {
+        return seller;
+    }
 
+    public void setSeller(Long seller) {
+        this.seller = seller;
+    }
+
+    public Long getBuyer() {
+        return buyer;
+    }
+
+    public void setBuyer(Long buyer) {
+        this.buyer = buyer;
+    }
 }
