@@ -45,7 +45,8 @@
                          width="200" height="200">
                 </div></td>
                 <td><a sec:authorize="hasRole('ROLE_ADMIN')" th:href="${'/cars/edit/' + car.id}" class="btn btn-warning">Edit</a></td>
-                <td><a sec:authorize="isAuthenticated()" th:href="${'/cars/buy/' + car.id}" class="btn btn-danger">Buy</a></td>
+                <td><a sec:authorize="hasRole('ROLE_ADMIN')" th:href="${'/cars/delete/' + car.id}" class="btn btn-danger">Delete</a></td>
+                <td><a sec:authorize="isAuthenticated() && !hasRole('ROLE_ADMIN')" th:href="${'/cars/buy/' + car.id}" class="btn btn-danger">Buy</a></td>
             </tr>
         </table>
     </div>

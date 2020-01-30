@@ -15,7 +15,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 /**
  *
- * @author Wojciech Polubiec
+ * @author Jakub Grzechnik
  * Korzystam z rozszerzenia Spring Security do zarządzania dostępami i bezpieczeństwem w aplikacji
  */
 
@@ -61,7 +61,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth)
             throws Exception {
         auth
-              .authenticationProvider(authenticationProvider());
+                .authenticationProvider(authenticationProvider());
     }
 
     @Bean

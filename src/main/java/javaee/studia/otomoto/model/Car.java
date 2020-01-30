@@ -4,6 +4,8 @@ import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+
+import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 
 /**
@@ -16,6 +18,7 @@ import org.hibernate.annotations.GenericGenerator;
  * Mapowanie obiektowo-relacyjne, @Entity określa nazwę tabeli w bazie danych.
  */
 @Entity
+@Data
 public class Car {
 
     /**
