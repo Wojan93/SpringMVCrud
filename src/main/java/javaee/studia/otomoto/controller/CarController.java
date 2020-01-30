@@ -33,10 +33,11 @@ public class CarController {
     private UserPrincipal userPrincipal;
 
 
-//    @Autowired
+    //    @Autowired
 //    public void setCarRepository(CarRepository carRepository) {
 //        this.carRepository = carRepository;
 //    }
+
 
     @Autowired
     public CarController(CarRepository carRepository, UserRepository userRepository, UserPrincipalDetailsService userDetailsService, UserPrincipal userPrincipal) {
@@ -45,6 +46,7 @@ public class CarController {
         this.userDetailsService = userDetailsService;
         this.userPrincipal = userPrincipal;
     }
+
 
     // Remove white spaces in form
     @InitBinder
