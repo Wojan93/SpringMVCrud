@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head lang="en">
+    <title>Cars</title>
+    <th:block th:include="layout/header"></th:block>
+</head>
+<body>
+<div class="container">
+    <div th:if="${not #lists.isEmpty(users)}">
+        <h2>All users</h2>
+        <table class="table table-striped">
+            <tr>
+                <th>ID</th>
+                <th>Active</th>
+                <th>Roles</th>
+                <th>Username</th>
+                <th>Full name</th>
+                <th>Email</th>
+                <th>Phone number</th>
+                <th>City</th>
+                <th>State</th>
+                <th>Street</th>
+                <th>Zip code</th>
+            </tr>
+            <tr th:each="user : ${users}">
+                <td th:text="${user.id}">ID</td>
+                <td th:text="${user.active}">Active</td>
+                <td th:text="${user.roles}">Roles</td>
+                <td th:text="${user.username}">Username</td>
+                <td th:text="${user.fullname}">Full namer</td>
+                <td th:text="${user.email}">Email</td>
+                <td th:text="${user.phoneNumber}">Phone number</td>
+                <td th:text="${user.city}">City</td>
+                <td th:text="${user.state}">State</td>
+                <td th:text="${user.street}">Street</td>
+                <td th:text="${user.zip}">Zip code</td>
+                <td><a sec:authorize="hasRole('ROLE_ADMIN')" th:href="${'/admin/delete/' + user.id}" class="btn btn-danger">Delete</a></td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>

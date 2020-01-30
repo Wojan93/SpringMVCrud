@@ -26,6 +26,12 @@
                                 <li sec:authorize="isAuthenticated()">
                                     <a class="nav-link" th:href="@{/car/add}">Dodaj Ogłoszenie</a>
                                 </li>
+                                <li sec:authorize="isAuthenticated()">
+                                    <a class="nav-link" th:href="@{/cars/buyed}">Kupione</a>
+                                </li>
+                                <li sec:authorize="isAuthenticated()">
+                                    <a class="nav-link" th:href="@{/cars/forsale}">Na sprzedaż</a>
+                                </li>
                                 <li sec:authorize="hasRole('ROLE_ADMIN')">
                                     <a class="nav-link" th:href="@{/admin}">Admin</a>
                                 </li>

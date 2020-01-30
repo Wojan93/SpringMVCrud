@@ -1,31 +1,51 @@
 package javaee.studia.otomoto.controller;
 
 
-import javaee.studia.otomoto.commands.CarCommand;
+import javaee.studia.otomoto.model.Car;
+import javaee.studia.otomoto.model.UserPrincipal;
 import javaee.studia.otomoto.repository.CarRepository;
-import javaee.studia.otomoto.service.CarService;
-import lombok.extern.slf4j.Slf4j;
+
+import javax.validation.Valid;
+
+import javaee.studia.otomoto.repository.UserRepository;
+import javaee.studia.otomoto.security.UserPrincipalDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
-@Slf4j
 @Controller
 public class CarController {
 
-    private final CarService carService;
     private CarRepository carRepository;
+//    @Autowired
+    private UserRepository userRepository;
+//    @Autowired
+    private UserPrincipalDetailsService userDetailsService;
+//    @Autowired
+    private UserPrincipal userPrincipal;
+
+
+//    @Autowired
+//    public void setCarRepository(CarRepository carRepository) {
+//        this.carRepository = carRepository;
+//    }
 
     @Autowired
-    public void setCarRepository(CarRepository carRepository) {
+    public CarController(CarRepository carRepository, UserRepository userRepository, UserPrincipalDetailsService userDetailsService, UserPrincipal userPrincipal) {
         this.carRepository = carRepository;
-    }
-
-    public CarController(CarService carService) {
-        this.carService = carService;
+        this.userRepository = userRepository;
+        this.userDetailsService = userDetailsService;
+        this.userPrincipal = userPrincipal;
     }
 
     // Remove white spaces in form
@@ -35,46 +55,84 @@ public class CarController {
  		webDataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
  	}
 
-    @GetMapping("/car/show/{id}")
-    public String showById(@PathVariable String id, Model model){
-
-        model.addAttribute("car", carService.findById(Long.valueOf(id)));
-        return "car";
+    @RequestMapping(path = "/cars/add", method = RequestMethod.GET)
+    public String createProduct(Model model) {
+        model.addAttribute("car", new Car());
+        return "edit";
     }
 
-    @GetMapping("car/add")
-    public String newCar(Model model){
-        model.addAttribute("car", new CarCommand());
+    @RequestMapping(path = "cars", method = RequestMethod.POST)
+    public String saveCar(@Valid @ModelAttribute("car") Car car, BindingResult bindingResult) {
+    	
+    	if (bindingResult.hasErrors()) {
+    		return "edit";
+    	}else {
 
-        return "car";
+            String username = getUsername();
+
+            car.setSeller(userRepository.findByUsername(username).getId());
+    		carRepository.save(car);
+    		return "redirect:/";
+    	} 
     }
 
-    @GetMapping("car/{id}/update")
-    public String updateRecipe(@PathVariable String id, Model model){
-        model.addAttribute("car", carService.findCommandById(Long.valueOf(id)));
-        return  "car";
-    }
-
-
-    @RequestMapping(path = "/car", method = RequestMethod.GET)
+    @RequestMapping(path = "/cars", method = RequestMethod.GET)
     public String getAllCars(Model model) {
-        model.addAttribute("cars", carRepository.findAll());
-        return "car";
+//        model.addAttribute("cars", carRepository.findAll());
+        model.addAttribute("cars", carRepository.findByBuyerIsNull());
+        return "cars";
     }
 
-    @PostMapping("car")
-    public String saveOrUpdate(@ModelAttribute CarCommand command){
-        CarCommand savedCommand = carService.saveCarCommand(command);
+    @RequestMapping(path = "/cars/buyed", method = RequestMethod.GET)
+    public String getBuyedCars(Model model) {
 
-        return "redirect:/car/show/" + savedCommand.getId();
+        String username = getUsername();
+
+        model.addAttribute("cars", carRepository.findByBuyer(userRepository.findByUsername(username).getId()));
+        return "cars-buyed";
     }
 
-    @GetMapping("car/{id}/delete")
-    public String deleteById(@PathVariable String id){
+    @RequestMapping(path = "/cars/forsale", method = RequestMethod.GET)
+    public String getForSaleCars(Model model) {
 
-        log.debug("Deleting id: " + id);
+        String username = getUsername();
 
-        carService.deleteById(Long.valueOf(id));
-        return "redirect:/";
+        model.addAttribute("cars", carRepository.findBySeller(userRepository.findByUsername(username).getId()));
+        return "cars-forsale";
+    }
+
+
+    @RequestMapping(path = "/cars/edit/{id}", method = RequestMethod.GET)
+    public String editCar(Model model, @PathVariable(value = "id") String id) {
+        model.addAttribute("car", carRepository.findById(id));
+        return "edit";
+    }
+
+    @RequestMapping(path = "/cars/buy/{id}", method = RequestMethod.GET)
+    public String buyCar(@PathVariable(name = "id") String id) {
+        Car car = carRepository.getOne(id);
+
+        String username = getUsername();
+
+        car.setBuyer(userRepository.findByUsername(username).getId());
+        carRepository.save(car);
+        return "redirect:/cars";
+    }
+
+    @RequestMapping(path = "/cars/delete/{id}", method = RequestMethod.GET)
+    public String deleteCar(@PathVariable(name = "id") String id) {
+        carRepository.deleteById(id);
+        return "redirect:/cars";
+    }
+
+    private String getUsername() {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username;
+        if (principal instanceof UserDetails) {
+            username = ((UserDetails) principal).getUsername();
+        } else {
+            username = principal.toString();
+        }
+        return username;
     }
 }

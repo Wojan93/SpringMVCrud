@@ -1,9 +1,11 @@
 package javaee.studia.otomoto.controller;
 
 
+import javaee.studia.otomoto.email.EmailSender;
 import javaee.studia.otomoto.model.User;
 import javaee.studia.otomoto.repository.UserRepository;
 import javaee.studia.otomoto.security.RegistrationForm;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -11,6 +13,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.context.Context;
 
 import javax.validation.Valid;
 
@@ -20,10 +24,15 @@ public class RegistrationController {
 
     private UserRepository userRepo;
     private PasswordEncoder passwordEncoder;
+    private final EmailSender emailSender;
+    private final TemplateEngine templateEngine;
 
-    public RegistrationController(UserRepository userRepo, PasswordEncoder passwordEncoder) {
+    @Autowired
+    public RegistrationController(UserRepository userRepo, PasswordEncoder passwordEncoder, EmailSender emailSender, TemplateEngine templateEngine) {
         this.userRepo = userRepo;
         this.passwordEncoder = passwordEncoder;
+        this.emailSender = emailSender;
+        this.templateEngine = templateEngine;
     }
 
 
@@ -65,6 +74,14 @@ public class RegistrationController {
         }
 
         userRepo.save(form.toUser(passwordEncoder));
+
+        Context context = new Context();
+        context.setVariable("header", "Utworzenie nowego konta");
+        context.setVariable("title", "Gratulujemy, konto w Moto Market Application zostało utworzone");
+        context.setVariable("description", "Życzymy udanych zakupów");
+        String body = templateEngine.process("email", context);
+        emailSender.sendEmail(form.getEmail(), "Moto Market Application - utworzenie konta", body);
+
         return "redirect:/login";
 
     }

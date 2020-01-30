@@ -82,5 +82,21 @@ public class DataLoader implements CommandLineRunner {
         car2.setAluWheels(true);
    //     car2.setImages(s);
         carRepository.save(car2);
+
+        Car car3 = new Car();
+        car3.setCompany("Toyota");
+        car3.setModel("Celica");
+        car3.setName("Zabytek");
+        car3.setColour("Blue");
+        car3.setVinNumber("VWE4440012003054");
+        car3.setPrice(20999.00);
+        car3.setYear(1997);
+        car3.setMotorCapacity(1800);
+        car3.setFuelType("Benzyna");
+        car3.setKilometers(210000.40);
+        car3.setSafetyLock(true);
+        car3.setAluWheels(true);
+
+        carRepository.save(car3);
     }
 }
