@@ -21,10 +21,10 @@
                                     <a class="navbar-brand" href="#" th:href="@{/}">Home</a>
                                 </li>
                                 <li>
-                                    <a class="nav-link" th:href="@{/cars}">Zobacz Ogłoszenia</a>
+                                    <a class="nav-link" th:href="@{/car}">Zobacz Ogłoszenia</a>
                                 </li>
                                 <li sec:authorize="isAuthenticated()">
-                                    <a class="nav-link" th:href="@{/cars/add}">Dodaj Ogłoszenie</a>
+                                    <a class="nav-link" th:href="@{/car/add}">Dodaj Ogłoszenie</a>
                                 </li>
                                 <li sec:authorize="hasRole('ROLE_ADMIN')">
                                     <a class="nav-link" th:href="@{/admin}">Admin</a>
@@ -35,16 +35,18 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <form sec:authorize="isAnonymous()" th:action="@{/login}" class="form-inline my-2 my-lg-0" form-method="post" id="login">
+                                    <form sec:authorize="isAnonymous()" th:action="@{/login}"
+                                          class="form-inline my-2 my-lg-0" form-method="post" id="login">
                                         <button
                                                 class="btn btn-outline-danger my-2 my-sm-0 btn-sm" type="submit">Zaloguj
                                         </button>
                                     </form>
                                 </li>
                                 <li>
-                                    <form sec:authorize="isAuthenticated()"  th:action="@{/logout}" class="form-inline my-2 my-lg-0" form-method="post"  id="logout">
+                                    <form sec:authorize="isAuthenticated()" th:action="@{/logout}"
+                                          class="form-inline my-2 my-lg-0" form-method="post" id="logout">
                                         <button
-                                               class="btn btn-outline-danger my-2 my-sm-0 btn-sm" type="submit">Wyloguj
+                                                class="btn btn-outline-danger my-2 my-sm-0 btn-sm" type="submit">Wyloguj
                                         </button>
                                     </form>
                                 </li>

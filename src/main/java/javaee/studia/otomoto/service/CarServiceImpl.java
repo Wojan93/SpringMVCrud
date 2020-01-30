@@ -5,12 +5,16 @@ import javaee.studia.otomoto.converters.CarCommandToCar;
 import javaee.studia.otomoto.converters.CarToCarCommand;
 import javaee.studia.otomoto.model.Car;
 import javaee.studia.otomoto.repository.CarRepository;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
+@Slf4j
+@Service
 public class CarServiceImpl implements CarService {
 
 

@@ -142,7 +142,7 @@ public class ImageServiceImpl implements ImageService {
         try {
             Car car = carRepository.findById(carId).get();
 
-            Byte[] byteObjects = new Byte[file.getBytes().length];
+            byte[] byteObjects = new byte[file.getBytes().length];
 
             int i = 0;
 

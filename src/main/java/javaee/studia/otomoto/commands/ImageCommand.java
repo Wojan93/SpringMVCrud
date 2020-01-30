@@ -14,5 +14,5 @@ public class ImageCommand {
     private Long carId;
     private String filename;
     private String type;
-    private Byte[] pic;
+    private byte[] pic;
 }

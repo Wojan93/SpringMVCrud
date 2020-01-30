@@ -5,6 +5,9 @@
     <th:block th:include="layout/header"></th:block>
 </head>
 <body>
+<!--/*@thymesVar id="cars" type="java.util.List"*/-->
+<!--/*@thymesVar id="car" type="javaee.studia.otomoto.model.Car"*/-->
+
 <div class="container">
     <div th:if="${not #lists.isEmpty(cars)}">
         <h2>All Cars</h2>
@@ -38,11 +41,12 @@
                 <td th:text="${car.kilometers}">Kilometers</td>
                 <td th:text="${car.safetyLock}">Safety Lock</td>
                 <td th:text="${car.aluWheels}">Alu Wheels</td>
-                <td><a sec:authorize="hasRole('ROLE_ADMIN')" th:href="${'/cars/edit/' + car.id}" class="btn btn-warning">Edit</a></td>
-                <td><a th:href="${'/cars/delete/' + car.id}" class="btn btn-danger">Buy</a></td>
+                <td><a sec:authorize="hasRole('ROLE_ADMIN')" th:href="${'/car/edit/' + car.id}" class="btn btn-warning">Edit</a></td>
+                <td><a th:href="${'/car/delete/' + car.id}" class="btn btn-danger">Buy</a></td>
+                <td><a th:href="${'/car/show/' + car.id}" class="btn btn-warning">View</a></td>
                 <td>
                     <div class="col-md-6">
-                    <img th:src="${car.getImages()}" width="200" height="200">
+                        <img  th:href="@{'/car/'  +${car.id} + '/image/1'}"  width="200" height="200">
                     </div>
                 </td>
 

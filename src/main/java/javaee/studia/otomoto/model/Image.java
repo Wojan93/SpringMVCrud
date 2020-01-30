@@ -25,19 +25,19 @@ public class Image {
     private String type;
 
     @Lob
-    private Byte[] pic;
+    private byte[] pic;
 
     public Image() {
     }
 
-    public Image(long id, String filename, String type, Byte[] pic) {
+    public Image(long id, String filename, String type, byte[] pic) {
         this.id = id;
         this.filename = filename;
         this.type = type;
         this.pic = pic;
     }
 
-    public Image(long id, String filename, String type, Byte[] pic, Car car) {
+    public Image(long id, String filename, String type, byte[] pic, Car car) {
         this.id = id;
         this.filename = filename;
         this.type = type;
