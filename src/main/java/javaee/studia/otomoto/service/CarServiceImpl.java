@@ -62,6 +62,7 @@ public class CarServiceImpl implements CarService {
 
         Car savedCar = carRepository.save(detachedCar);
         log.debug("Saved CarId:" + savedCar.getId());
+
         return carToCarCommand.convert(savedCar);
     }
 

@@ -1,17 +1,9 @@
 package javaee.studia.otomoto.commands;
 
 
-import javaee.studia.otomoto.model.Image;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import javax.persistence.*;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
-import java.util.HashSet;
-import java.util.Set;
 
 @Getter
 @Setter
@@ -32,5 +24,7 @@ public class CarCommand {
     private Double kilometers;
     private Boolean safetyLock;
     private Boolean aluWheels;
-    protected Set<ImageCommand> images = new HashSet<>();
+    private Long seller;
+    private Long buyer;
+    private Byte[] image;
 }

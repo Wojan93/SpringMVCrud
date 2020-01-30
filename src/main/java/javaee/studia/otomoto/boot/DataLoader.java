@@ -1,26 +1,31 @@
 package javaee.studia.otomoto.boot;
 
 import javaee.studia.otomoto.model.Car;
-import javaee.studia.otomoto.model.Image;
 import javaee.studia.otomoto.repository.CarRepository;
-import javaee.studia.otomoto.repository.ImageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
+
 import java.io.IOException;
-import java.util.HashSet;
-import java.util.Set;
 
 @Component
 public class DataLoader implements CommandLineRunner {
 
     private CarRepository carRepository;
-    private ImageRepository imageRepository;
 
-    @Autowired
-    public void setImageRepository(ImageRepository imageRepository) {
-        this.imageRepository = imageRepository;
+    private Byte[] byteToByteConv(ClassPathResource cpr) throws IOException {
+
+        byte[] arrayPic = new byte[(int) cpr.contentLength()];
+        cpr.getInputStream().read(arrayPic);
+        Byte[] byteObjects = new Byte[arrayPic.length];
+
+        int i = 0;
+    // Associating Byte array values with bytes. (byte[] to Byte[])
+        for (byte b : arrayPic)
+            byteObjects[i++] = b;
+
+        return byteObjects;
     }
 
     @Autowired
@@ -45,25 +50,9 @@ public class DataLoader implements CommandLineRunner {
         car1.setKilometers(120000.40);
         car1.setSafetyLock(true);
         car1.setAluWheels(true);
+        car1.setImage(byteToByteConv(new ClassPathResource("static/images/audi.jpg")));
 
-        ClassPathResource backImgFile = new ClassPathResource("static/images/audi.jpg");
-        byte[] arrayPic = new byte[(int) backImgFile.contentLength()];
-        backImgFile.getInputStream().read(arrayPic);
-        Image blackImage = new Image(1, "audi", "jpg", arrayPic);
-
-        // image 2
-        ClassPathResource blueImgFile = new ClassPathResource("static/images/vw-passat.jpg");
-        arrayPic = new byte[(int) blueImgFile.contentLength()];
-        blueImgFile.getInputStream().read(arrayPic);
-        Image blueImage = new Image(2, "vw-passat", "jpg", arrayPic);
-        imageRepository.save(blackImage);
-        imageRepository.save(blueImage);
-        Set<Image> s = new HashSet<>();
-        s.add(blackImage);
-      //  s.add(blueImage);
-
-        //        car1.setImages(s);
-       carRepository.save(car1);
+        carRepository.save(car1);
         // store image to MySQL via SpringJPA
 
         Car car2 = new Car();
@@ -80,7 +69,8 @@ public class DataLoader implements CommandLineRunner {
         car2.setKilometers(240000.40);
         car2.setSafetyLock(true);
         car2.setAluWheels(true);
-   //     car2.setImages(s);
+        car2.setImage(byteToByteConv(new ClassPathResource("static/images/vw-passat.jpg")));
+
         carRepository.save(car2);
 
         Car car3 = new Car();
@@ -96,7 +86,7 @@ public class DataLoader implements CommandLineRunner {
         car3.setKilometers(210000.40);
         car3.setSafetyLock(true);
         car3.setAluWheels(true);
-
+        car3.setImage(byteToByteConv(new ClassPathResource("static/images/Toyota.jpg")));
         carRepository.save(car3);
     }
 }

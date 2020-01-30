@@ -1,9 +1,6 @@
 package javaee.studia.otomoto.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -13,16 +10,14 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.GenericGenerator;
 
-
 @Entity
 public class Car {
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "system-uuid")
-    @GenericGenerator(name = "system-uuid", strategy = "uuid2")
-    private String id;
-    
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GenericGenerator(name = "increment", strategy = "increment")
+    private Long id;
     @NotNull(message = "is required")
     private String company;
     @NotNull(message = "is required")
@@ -33,19 +28,15 @@ public class Car {
     private String vinNumber;
     @NotNull(message = "is required")
     private String colour;
-    
     @NotNull(message = "is required")
     private Double price;
-
     @NotNull(message = "is required")
 	@Min(value = 1900, message = "must be greater than 1900 and less than 2021")
     @Max(value = 2020, message = "must be greater than 1900 and less than 2021")
     private int year;
-    
     @NotNull(message = "is required")
     @Min(value = 1, message = "must be valid")
     private int motorCapacity;
-    
     @NotNull(message = "is required")
     private String fuelType;
     @NotNull(message = "is required")
@@ -54,19 +45,21 @@ public class Car {
     private Boolean safetyLock;
     @NotNull(message = "is required")
     private Boolean aluWheels;
-
     private Long seller;
-
     private Long buyer;
+    @Lob
+    private Byte[] image;
 
+//Constructor
     public Car() {
     }
 
-    public String getId() {
+    //Getters and Setters
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -180,5 +173,13 @@ public class Car {
 
     public void setBuyer(Long buyer) {
         this.buyer = buyer;
+    }
+
+    public Byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(Byte[] image) {
+        this.image = image;
     }
 }

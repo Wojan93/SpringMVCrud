@@ -10,12 +10,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class CarToCarCommand implements Converter<Car, CarCommand> {
 
-    private final ImageToImageCommand imageConverter;
 
-    public CarToCarCommand( ImageToImageCommand imageConverter){
-        this.imageConverter = imageConverter;
+    public CarToCarCommand() {
+
     }
-
 
 
     @Synchronized
@@ -41,12 +39,8 @@ public class CarToCarCommand implements Converter<Car, CarCommand> {
         command.setKilometers(source.getKilometers());
         command.setSafetyLock(source.getSafetyLock());
         command.setAluWheels(source.getAluWheels());
+        command.setImage(source.getImage());
 
-
-        if (source.getImages() != null && source.getImages().size() > 0){
-            source.getImages()
-                    .forEach(image -> command.getImages().add(imageConverter.convert(image)));
-        }
 
         return command;
     }

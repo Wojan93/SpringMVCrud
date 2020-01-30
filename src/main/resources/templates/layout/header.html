@@ -21,10 +21,10 @@
                                     <a class="navbar-brand" href="#" th:href="@{/}">Home</a>
                                 </li>
                                 <li>
-                                    <a class="nav-link" th:href="@{/car}">Zobacz Ogłoszenia</a>
+                                    <a class="nav-link" th:href="@{/cars}">Zobacz Ogłoszenia</a>
                                 </li>
                                 <li sec:authorize="isAuthenticated()">
-                                    <a class="nav-link" th:href="@{/car/add}">Dodaj Ogłoszenie</a>
+                                    <a class="nav-link" th:href="@{/cars/add}">Dodaj Ogłoszenie</a>
                                 </li>
                                 <li sec:authorize="isAuthenticated()">
                                     <a class="nav-link" th:href="@{/cars/buyed}">Kupione</a>

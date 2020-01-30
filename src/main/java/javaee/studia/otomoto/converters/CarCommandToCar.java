@@ -8,13 +8,11 @@ import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CarCommandToCar implements Converter<CarCommand, Car>
-{
+public class CarCommandToCar implements Converter<CarCommand, Car> {
 
-    private final ImageCommandToImage imageConverter;
 
-    public CarCommandToCar(ImageCommandToImage imageConverter) {
-        this.imageConverter = imageConverter;
+    public CarCommandToCar() {
+
     }
 
     @Synchronized
@@ -39,11 +37,8 @@ public class CarCommandToCar implements Converter<CarCommand, Car>
         car.setKilometers(source.getKilometers());
         car.setSafetyLock(source.getSafetyLock());
         car.setAluWheels(source.getAluWheels());
+        car.setImage(source.getImage());
 
-        if (source.getImages() != null && source.getImages().size() > 0){
-            source.getImages()
-                    .forEach(image -> car.getImages().add(imageConverter.convert(image)));
-        }
 
         return car;
     }
