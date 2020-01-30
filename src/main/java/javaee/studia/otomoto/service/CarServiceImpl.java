@@ -13,6 +13,12 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
+
+/**
+ *
+ * @author Mateusz Wilk
+ */
+
 @Slf4j
 @Service
 public class CarServiceImpl implements CarService {
@@ -30,7 +36,7 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public Set<Car> getCars() {
-        log.debug("I'm in the service");
+  //      log.debug("I'm in the service");
 
         Set<Car> carSet = new HashSet<>();
         carRepository.findAll().iterator().forEachRemaining(carSet::add);
@@ -61,7 +67,7 @@ public class CarServiceImpl implements CarService {
         Car detachedCar = carCommandToCar.convert(command);
 
         Car savedCar = carRepository.save(detachedCar);
-        log.debug("Saved CarId:" + savedCar.getId());
+ //      log.debug("Saved CarId:" + savedCar.getId());
 
         return carToCarCommand.convert(savedCar);
     }

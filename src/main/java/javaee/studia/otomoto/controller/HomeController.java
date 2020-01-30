@@ -7,6 +7,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+/**
+ *
+ * @author Jakub Grzechnik
+ */
+
 @Slf4j
 @Controller
 public class HomeController {
@@ -20,7 +25,7 @@ public class HomeController {
 
     @RequestMapping({"", "/", "/index"})
     public String getIndexPage(Model model) {
-        log.debug("Getting Index page");
+   //      log.debug("Getting Index page");
 
         model.addAttribute("cars", carService.getCars());
 

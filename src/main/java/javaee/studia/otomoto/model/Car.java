@@ -1,23 +1,36 @@
 package javaee.studia.otomoto.model;
 
 import javax.persistence.*;
-import javax.validation.constraints.Digits;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
-
 import org.hibernate.annotations.GenericGenerator;
 
+/**
+ *
+ * @author Jakub Grzechnik
+ */
+
+
+/**
+ * Mapowanie obiektowo-relacyjne, @Entity określa nazwę tabeli w bazie danych.
+ */
 @Entity
 public class Car {
 
-
+    /**
+     * @Id wskazuje, że dane pole jest unikalnym identyfikatorem obiektu, @GeneratedValue - automatyczne generowanie wartości Id, za pomocą Generatora inkrementacyjnego.
+     * Pole typu Long tzn. o zakresie liczb do (2^63)-1
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @GenericGenerator(name = "increment", strategy = "increment")
     private Long id;
+
+
+    /**
+     * @NotNull wskazuje, że dane pole jest wymagane - message udostępnia podpowiedź wyświetlaną w formularzu. Pole company jest typu łańcuchowego String (tekst)
+     */
     @NotNull(message = "is required")
     private String company;
     @NotNull(message = "is required")
@@ -31,6 +44,11 @@ public class Car {
     @NotNull(message = "is required")
     private Double price;
     @NotNull(message = "is required")
+
+    /**
+     * @Min określa wartość minimalną w polu year typu całkowitego
+     * @Max określa wartość maksymalną pola year
+     */
 	@Min(value = 1900, message = "must be greater than 1900 and less than 2021")
     @Max(value = 2020, message = "must be greater than 1900 and less than 2021")
     private int year;
@@ -47,14 +65,21 @@ public class Car {
     private Boolean aluWheels;
     private Long seller;
     private Long buyer;
+    /**
+     * @Lob  umożliwia przechowywanie dużej ilości danych, np. dane w postaci plików graficznych. Pole typu Byte[] - klasa wrapująca typ binarny byte
+     */
     @Lob
     private Byte[] image;
 
-//Constructor
+    /**
+     * Konstruktor bezparametrowy o publicznym dostępie
+     */
     public Car() {
     }
 
-    //Getters and Setters
+    /**
+     * Publiczne getery i setery umożliwiają dostęp do danych w bazie SQL do każdego pola tej klasy.
+     */
     public Long getId() {
         return id;
     }

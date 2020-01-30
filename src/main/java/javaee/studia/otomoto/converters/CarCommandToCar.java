@@ -7,6 +7,14 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 
+/**
+ *
+ * @author Wojciech Polubiec
+ * Konwerter z ObiektuCommand na Obiekt przechowywany w Bazie danych
+ * Component , klasa będzie wykrywana automatycznie w konfiguracji Springa.
+ * Część wzorca projektowego Polecenie - Command
+ */
+
 @Component
 public class CarCommandToCar implements Converter<CarCommand, Car> {
 

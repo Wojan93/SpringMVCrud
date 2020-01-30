@@ -12,6 +12,13 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+
+/**
+ *
+ * @author Wojciech Polubiec
+ * Korzystam z rozszerzenia Spring Security do zarządzania dostępami i bezpieczeństwem w aplikacji
+ */
+
 @SuppressWarnings("deprecation")
 @Configuration
 @EnableWebSecurity
@@ -21,7 +28,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public SecurityConfig(UserPrincipalDetailsService userPrincipalDetailsService) {
         this.userPrincipalDetailsService = userPrincipalDetailsService;
     }
-
+    /**
+     *
+     *Główna konfiguracja do zarządzania dostępami w aplikacji.
+     */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http

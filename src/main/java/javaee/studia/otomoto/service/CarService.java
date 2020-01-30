@@ -5,6 +5,11 @@ import javaee.studia.otomoto.model.Car;
 
 import java.util.Set;
 
+/**
+ *
+ * @author Mateusz Wilk
+ */
+
 public interface CarService {
 
     Set<Car> getCars();

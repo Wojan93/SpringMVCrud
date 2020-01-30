@@ -1,5 +1,4 @@
 package javaee.studia.otomoto;
-import javaee.studia.otomoto.commands.CarCommand;
 import javaee.studia.otomoto.controller.CarController;
 import javaee.studia.otomoto.model.Car;
 import javaee.studia.otomoto.model.UserPrincipal;
@@ -11,16 +10,17 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
+/**
+ *
+ * @author Wojciech Polubiec
+ */
 
 public class ControllerTests {
 

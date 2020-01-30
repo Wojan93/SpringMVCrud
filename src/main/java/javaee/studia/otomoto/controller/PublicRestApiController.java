@@ -8,6 +8,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+/**
+ *
+ * @author Wojciech Polubiec
+ */
+
 @RestController
 @RequestMapping("/api/public")
 public class PublicRestApiController {

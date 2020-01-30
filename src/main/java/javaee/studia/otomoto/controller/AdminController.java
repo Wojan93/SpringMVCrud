@@ -1,11 +1,16 @@
 package javaee.studia.otomoto.controller;
 
-import javaee.studia.otomoto.repository.CarRepository;
+
 import javaee.studia.otomoto.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+/**
+ *
+ * @author Mateusz Wilk
+ */
 
 @Controller
 @RequestMapping("/admin")

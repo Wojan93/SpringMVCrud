@@ -9,6 +9,15 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ *
+ * @author Jakub Grzechnik
+ */
+
+
+/**
+ * Klasa do obsługi szczegółowych danych użytkownika, np. jego dostępy i role. Implementuje interfejs UserDetails dostarczony przez Springa
+ */
 @Component
 public class UserPrincipal implements UserDetails {
 
@@ -20,6 +29,9 @@ public class UserPrincipal implements UserDetails {
         this.user = user;
     }
 
+    /**
+     * Kolekcja w której zapisuje się poszczególne role użytkowników. @Override używa się do nadpisania standardowej implementacji w danej bibliotece.
+     */
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> authorities = new ArrayList<>();

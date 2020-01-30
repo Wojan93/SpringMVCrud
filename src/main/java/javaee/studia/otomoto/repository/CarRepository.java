@@ -7,6 +7,12 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/**
+ *
+ * @author Mateusz Wilk
+ * Repository adnotuje klasy w warstwie trwałości, która będzie działać jako repozytorium bazy danych
+ */
+
 @Repository
 public interface CarRepository extends JpaRepository<Car, Long> {
 

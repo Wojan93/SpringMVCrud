@@ -9,6 +9,13 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 
+/**
+ *
+ * @author Wojciech Polubiec
+ * Slf4j biblioteka umożliwia obsługę logów
+ * adnotacja Service służy, aby wskazać, że przechowuje logikę biznesową.
+ */
+
 @Slf4j
 @Service
 public class ImageServiceImpl implements ImageService {
@@ -19,6 +26,12 @@ public class ImageServiceImpl implements ImageService {
         this.carRepository = carRepository;
     }
 
+    /**
+     *   Metoda zapisująca zdjęcia we tabeli Car w wierszu o odpowiednim id
+     * MultiPartFile służy do utworzenia reprezentacji przesłanego pliku otrzymanego w żądaniu wieloczęściowym
+     * Zawartość pliku jest przechowywana w pamięci lub tymczasowo na dysku
+     * MultiPartFile należy do SpringFramework
+     */
 
     @Override
     @Transactional
@@ -38,7 +51,7 @@ public class ImageServiceImpl implements ImageService {
 
         } catch (IOException e) {
             //todo handle better
-            log.error("Error occurred", e);
+       //     log.error("Error occurred", e);
 
             e.printStackTrace();
         }

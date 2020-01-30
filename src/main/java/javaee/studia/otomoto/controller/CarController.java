@@ -1,16 +1,11 @@
 package javaee.studia.otomoto.controller;
 
-
-import javaee.studia.otomoto.commands.CarCommand;
 import javaee.studia.otomoto.model.Car;
 import javaee.studia.otomoto.model.UserPrincipal;
 import javaee.studia.otomoto.repository.CarRepository;
-
 import javax.validation.Valid;
-
 import javaee.studia.otomoto.repository.UserRepository;
 import javaee.studia.otomoto.security.UserPrincipalDetailsService;
-import javaee.studia.otomoto.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -20,6 +15,11 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
+
+/**
+ *
+ * @author Mateusz Wilk
+ */
 
 @Controller
 public class CarController {
