@@ -15,7 +15,7 @@
 <!-- tag::thAction[] -->
 <form method="post" th:action="@{/login}" id="loginForm">
     <!-- tag::thAction[] -->
-    <div th:if="${param.error}" class ="alert alert-danger" id="error">Login failed. Check the username and password are correct</div>
+    <div th:if="${param.errorlogin}" class ="alert alert-danger" id="errorlogin">Login failed. Check the username and password are correct</div>
 
     <label for="username">Username: </label>
     <input type="text" name="username" id="username" class="form-control"/><br/>
