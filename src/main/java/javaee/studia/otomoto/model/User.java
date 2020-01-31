@@ -116,6 +116,8 @@ public class User {
         return active;
     }
 
+    public String getPhoneNumber() {return phoneNumber;}
+
     /**
      * Role mogą być oddzielone za pomocą przecinka, użytkownik może mieć wiele ról
      */

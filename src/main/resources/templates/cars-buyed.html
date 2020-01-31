@@ -23,6 +23,7 @@
                 <th>Kilometers</th>
                 <th>Safety Lock</th>
                 <th>Alu Wheels</th>
+                <th>Contact</th>
             </tr>
             <tr th:each="car : ${cars}">
                 <td sec:authorize="hasRole('ROLE_ADMIN')" th:text="${car.id}">Id</td>
@@ -38,6 +39,7 @@
                 <td th:text="${car.kilometers}">Kilometers</td>
                 <td th:text="${car.safetyLock}">Safety Lock</td>
                 <td th:text="${car.aluWheels}">Alu Wheels</td>
+                <td th:text="${car.phoneNumber}">Contact</td>
                 <td>
                     <div th:if="${not #lists.isEmpty(cars)}" class="col-md-6">
                         <img src="../../static/images/audi.jpg"

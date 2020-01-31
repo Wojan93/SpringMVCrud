@@ -60,9 +60,10 @@ public class DataLoader implements CommandLineRunner {
         car1.setKilometers(120000.40);
         car1.setSafetyLock(true);
         car1.setAluWheels(true);
+        car1.setPhoneNumber("100100100");
         car1.setImage(byteToByteConv(new ClassPathResource("static/images/audi.jpg")));
 
-        carRepository.save(car1);
+//        carRepository.save(car1);
         // store image to MySQL via SpringJPA
 
         Car car2 = new Car();
@@ -79,9 +80,10 @@ public class DataLoader implements CommandLineRunner {
         car2.setKilometers(240000.40);
         car2.setSafetyLock(true);
         car2.setAluWheels(true);
+        car2.setPhoneNumber("200200200");
         car2.setImage(byteToByteConv(new ClassPathResource("static/images/vw-passat.jpg")));
 
-        carRepository.save(car2);
+//        carRepository.save(car2);
 
         Car car3 = new Car();
         car3.setCompany("Toyota");
@@ -96,7 +98,8 @@ public class DataLoader implements CommandLineRunner {
         car3.setKilometers(210000.40);
         car3.setSafetyLock(true);
         car3.setAluWheels(true);
+        car3.setPhoneNumber("300300300");
         car3.setImage(byteToByteConv(new ClassPathResource("static/images/Toyota.jpg")));
-        carRepository.save(car3);
+//        carRepository.save(car3);
     }
 }

@@ -6,8 +6,12 @@
     <th:block th:include="layout/header"></th:block>
 </head>
 <body>
-<p>This is admin page. Only Admins should see this. </p>
+<p>To jest strona administracyjna. Tylko administratorzy mogą ją zobaczyć. </p>
+<ul class="navbar-nav mr-auto">
+    <li>
+        <a class="nav-link" th:href="@{/admin/users}">Lista użytkowników</a>
+    </li>
+</ul>
 
-<p><a class="nav-link" th:href="@{/admin/users}">Users list</a></p>
 </body>
 </html>

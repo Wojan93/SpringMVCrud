@@ -68,6 +68,7 @@ public class Car {
     private Boolean aluWheels;
     private Long seller;
     private Long buyer;
+    private String phoneNumber;
     /**
      * @Lob  umożliwia przechowywanie dużej ilości danych, np. dane w postaci plików graficznych. Pole typu Byte[] - klasa wrapująca typ binarny byte
      */
@@ -210,4 +211,8 @@ public class Car {
     public void setImage(Byte[] image) {
         this.image = image;
     }
+
+    public String getPhoneNumber() {return phoneNumber;}
+
+    public void setPhoneNumber(String phoneNumber) {this.phoneNumber = phoneNumber;}
 }

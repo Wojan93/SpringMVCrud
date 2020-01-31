@@ -33,10 +33,10 @@ public class CarController {
 
     /**
      * Konstruktor czteroargumentowy z wstrzyknięciem niezbędnych komponentów zapewniających obsługę operacji na bazie danych itd.
-     * @param carRepository
-     * @param userRepository
-     * @param userDetailsService
-     * @param userPrincipal
+     * @param carRepository zapewnia operacje na tabeli z samochodami
+     * @param userRepository zapewnia operacje na tabeli z użytkownikami
+     * @param userDetailsService obługa ról użytkowników
+     * @param userPrincipal obługa ról użytkowników
      */
     @Autowired
     public CarController(CarRepository carRepository, UserRepository userRepository, UserPrincipalDetailsService userDetailsService, UserPrincipal userPrincipal) {
@@ -68,8 +68,8 @@ public class CarController {
 
     /**
      * Metoda dodająca nowe ogłoszenie z jednoczesną walidacją poprawności wprowadzonych danych
-     * @param car
-     * @param bindingResult
+     * @param car obiekt samochodu który zostanie zapisany w bazie
+     * @param bindingResult kasowanie znaków spacji przed i po
      * @return String będący nazwą szablonu, który ma zostać wyświetlony po zapisaniu samochodu w bazie
      */
     @RequestMapping(path = "cars", method = RequestMethod.POST)
@@ -80,6 +80,7 @@ public class CarController {
         } else {
             String username = getUsername();
             car.setSeller(userRepository.findByUsername(username).getId());
+            car.setPhoneNumber(userRepository.findByUsername(username).getPhoneNumber());
             carRepository.save(car);
             return "redirect:/";
         }
@@ -128,7 +129,7 @@ public class CarController {
     /**
      * Metoda pozwalająca edytować wybrane ogłoszenie
      * @param model przechowujący listę samochodów do wyświetlenia
-     * @param
+     * @param id będący identyfikatorem edytowanego samochodu
      * @return String będący nazwą szablonu, który ma zostać wyświetlony
      */
     @RequestMapping(path = "/cars/edit/{id}", method = RequestMethod.GET)
