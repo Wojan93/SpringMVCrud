@@ -45,7 +45,7 @@ public class DataLoader implements CommandLineRunner {
 
     @Override
     public void run(String... strings) throws IOException {
-
+        this.carRepository.deleteAll();
         Car car1 = new Car();
 
         car1.setCompany("Audi");

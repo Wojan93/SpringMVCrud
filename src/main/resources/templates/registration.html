@@ -3,15 +3,15 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Rejestrowanie</title>
+    <title>Registration</title>
     <th:block th:include="layout/header"></th:block>
 </head>
 <body>
 
 <div class="container">
-    <h1>Rejestracja</h1>
+    <h1>Registration</h1>
 <form method="POST" th:action="@{/register}" id="registerForm" th:object="${registerForm}">
-    <label for="username" id="username" >Nazwa użytkownika: </label>
+    <label for="username" id="username" >Username: </label>
     <input type="text" th:field="*{username}" class="form-control"/><br/>
     <div th:if="${#fields.hasErrors('username')}"
          class="error">
@@ -21,14 +21,14 @@
         <a th:each="err : ${registrationError}" th:text="${err}" /></a>
     </div>
 
-    <label for="email" id="email" >Adres email (na adres zostanie wysłane potwierdzenie założenia konta): </label>
+    <label for="email" id="email" >Email address:  (an account confirmation will be sent to the address)</label>
     <input type="text" th:field="*{email}" class="form-control"/><br/>
     <div th:if="${#fields.hasErrors('email')}"
          class="error">
         <a th:each="err : ${#fields.errors('email')}" th:text="${err}" /></a>
     </div>
 
-    <label for="password" id="password">Hasło: </label>
+    <label for="password" id="password">Password: </label>
     <input type="password" th:field="*{password}" class="form-control"/><br/>
     <div th:if="${#fields.hasErrors('password')}"
          class="error">
@@ -38,56 +38,56 @@
         <a th:each="err : ${registrationErrorDiffPass}" th:text="${err}" /></a>
     </div>
 
-    <label for="passwordConfirmation" id="passwordConfirmation">Potwierdź hasło: </label>
+    <label for="passwordConfirmation" id="passwordConfirmation">Confirm password: </label>
     <input type="password" name="passwordConfirmation" class="form-control"/><br/>
     <div th:if="${#fields.hasErrors('passwordConfirmation')}"
          class="error">
         <a th:each="err : ${#fields.errors('passwordConfirmation')}" th:text="${err}" /></a>
     </div>
 
-    <label for="fullname" id="fullname">Imię i nazwisko: </label>
+    <label for="fullname" id="fullname">Full Name: </label>
     <input type="text" th:field="*{fullname}" class="form-control"/><br/>
     <div th:if="${#fields.hasErrors('fullname')}"
          class="error">
         <a th:each="err : ${#fields.errors('fullname')}" th:text="${err}" /></a>
     </div>
 
-    <label for="street" id="street">Ulica: </label>
+    <label for="street" id="street">Street: </label>
     <input type="text" th:field="*{street}" class="form-control"/><br/>
     <div th:if="${#fields.hasErrors('street')}"
          class="error">
         <a th:each="err : ${#fields.errors('street')}" th:text="${err}" /></a>
     </div>
 
-    <label for="city" id="city">Miejscowość: </label>
+    <label for="city" id="city">City: </label>
     <input type="text" th:field="*{city}" class="form-control"/><br/>
     <div th:if="${#fields.hasErrors('city')}"
          class="error">
         <a th:each="err : ${#fields.errors('city')}" th:text="${err}" /></a>
     </div>
 
-    <label for="state" id="state">Województwo: </label>
+    <label for="state" id="state">State: </label>
     <input type="text" th:field="*{state}" class="form-control"/><br/>
     <div th:if="${#fields.hasErrors('state')}"
          class="error">
         <a th:each="err : ${#fields.errors('state')}" th:text="${err}" /></a>
     </div>
 
-    <label for="zip" id="zip">Kod pocztowy: </label>
+    <label for="zip" id="zip">Zip code: </label>
     <input type="text" th:field="*{zip}" class="form-control"/><br/>
     <div th:if="${#fields.hasErrors('zip')}"
          class="error">
         <a th:each="err : ${#fields.errors('zip')}" th:text="${err}" /></a>
     </div>
 
-    <label for="phone" id="phone">Telefon: </label>
+    <label for="phone" id="phone">Phone number: </label>
     <input type="text" th:field="*{phone}" class="form-control"/><br/>
     <div th:if="${#fields.hasErrors('phone')}"
          class="error">
         <a th:each="err : ${#fields.errors('phone')}" th:text="${err}" /></a>
     </div>
 
-    <input type="submit" class="btn btn-success" value="Zarejestruj"/>
+    <input type="submit" class="btn btn-success" value="Register me"/>
 
 </form>
 </div>
