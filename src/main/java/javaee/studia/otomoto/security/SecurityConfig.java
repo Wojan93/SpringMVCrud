@@ -13,12 +13,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 
-/**
- *
- * @author Jakub Grzechnik
- * Korzystam z rozszerzenia Spring Security do zarządzania dostępami i bezpieczeństwem w aplikacji
- */
-
 @SuppressWarnings("deprecation")
 @Configuration
 @EnableWebSecurity

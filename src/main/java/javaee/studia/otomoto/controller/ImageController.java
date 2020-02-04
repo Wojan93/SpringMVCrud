@@ -15,10 +15,6 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-/**
- *
- * @author Wojciech Polubiec
- */
 
 @Slf4j
 @Controller

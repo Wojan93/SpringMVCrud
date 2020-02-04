@@ -8,12 +8,6 @@ import org.springframework.stereotype.Service;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- *
- * @author Mateusz Wilk
- * Klasa inicjalizuje bazę danych danymi o utworzonych kontach
- */
-
 @Service
 public class DbInit implements CommandLineRunner {
     private PasswordEncoder passwordEncoder;

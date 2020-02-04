@@ -7,14 +7,6 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 
-/**
- *
- * @author Wojciech Polubiec
- * Component służy do zaznaczenia zarządzania przez Spring dowolnym elementem
- * Konwerter z Obiektu przechowywanego w Bazie danych na obiekt żądania
- * Część wzorca projektowego Polecenie - Command
- */
-
 @Component
 public class CarToCarCommand implements Converter<Car, CarCommand> {
 

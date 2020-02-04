@@ -1,4 +1,4 @@
-package javaee.studia.otomoto.email;
+package javaee.studia.otomoto.service;
 
 /**
  *

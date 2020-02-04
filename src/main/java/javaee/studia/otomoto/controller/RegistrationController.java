@@ -1,7 +1,7 @@
 package javaee.studia.otomoto.controller;
 
 
-import javaee.studia.otomoto.email.EmailSender;
+import javaee.studia.otomoto.service.EmailSender;
 import javaee.studia.otomoto.model.User;
 import javaee.studia.otomoto.repository.UserRepository;
 import javaee.studia.otomoto.security.RegistrationForm;
@@ -16,11 +16,6 @@ import org.springframework.web.bind.annotation.*;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 import javax.validation.Valid;
-
-/**
- *
- * @author Mateusz Wilk
- */
 
 @Controller
 @RequestMapping("/register")

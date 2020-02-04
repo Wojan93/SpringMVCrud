@@ -9,21 +9,12 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 
-/**
- *
- * @author Wojciech Polubiec
- * Klasa wprowadza wartości o ogłoszeniach samochodowych do bazy danych
- * CommandLineRunner pozwala na wypełnienie bazy w trakcie uruchamiania aplikacji
- */
 
 @Component
 public class DataLoader implements CommandLineRunner {
 
     private CarRepository carRepository;
 
-    /**
-     * Konwerter pliku o ścieżce dostępu ClassPathResource z typu zwykłego byte[] na Byte[]
-     */
     private Byte[] byteToByteConv(ClassPathResource cpr) throws IOException {
 
         byte[] arrayPic = new byte[(int) cpr.contentLength()];
@@ -64,7 +55,7 @@ public class DataLoader implements CommandLineRunner {
         car1.setImage(byteToByteConv(new ClassPathResource("static/images/audi.jpg")));
 
         carRepository.save(car1);
-        // store image to MySQL via SpringJPA
+        // store image to MySQL via SpringJPA 
 
         Car car2 = new Car();
 

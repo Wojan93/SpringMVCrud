@@ -9,12 +9,6 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-/**
- *
- * @author Mateusz Wilk
- * Klasa potrzebna do utworzenia formularza rejestracyjnego
- *  adnotacja Lombok.Data pozwala utworzyć niezbędne getery i setery
- */
 
 @Data
 public class RegistrationForm {
