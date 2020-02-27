@@ -71,13 +71,13 @@ public class CarController {
     }
 
 
-    @RequestMapping(path = "/cars/buyed", method = RequestMethod.GET)
+    @RequestMapping(path = "/cars/my-cart", method = RequestMethod.GET)
     public String getBuyedCars(Model model) {
 
         String username = getUsername();
 
         model.addAttribute("cars", carRepository.findByBuyer(userRepository.findByUsername(username).getId()));
-        return "cars-buyed";
+        return "my-cart";
     }
 
 

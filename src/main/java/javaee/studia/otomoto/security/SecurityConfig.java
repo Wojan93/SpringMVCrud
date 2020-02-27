@@ -22,10 +22,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public SecurityConfig(UserPrincipalDetailsService userPrincipalDetailsService) {
         this.userPrincipalDetailsService = userPrincipalDetailsService;
     }
-    /**
-     *
-     *Główna konfiguracja do zarządzania dostępami w aplikacji.
-     */
+
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http

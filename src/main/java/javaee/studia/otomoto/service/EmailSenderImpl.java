@@ -7,11 +7,6 @@ import org.springframework.stereotype.Service;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
-/**
- *
- * @author Mateusz Wilk
- */
-
 @Service
 public class EmailSenderImpl implements EmailSender{
 

@@ -38,7 +38,7 @@ public class ImageServiceImpl implements ImageService {
             carRepository.save(car);
 
         } catch (IOException e) {
-            //todo handle better
+
            log.error("Error occurred", e);
 
             e.printStackTrace();
