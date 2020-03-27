@@ -25,25 +25,25 @@
                 <th>Alu Wheels</th>
                 <th>Contact</th>
             </tr>
-            <tr th:each="car : ${cars}">
-                <td sec:authorize="hasRole('ROLE_ADMIN')" th:text="${car.id}">Id</td>
-                <td th:text="${car.company}">Company</td>
-                <td th:text="${car.model}">Model</td>
-                <td th:text="${car.name}">Name</td>
-                <td th:text="${car.price}">Price</td>
-                <td th:text="${car.vinNumber}">Vin Number</td>
-                <td th:text="${car.colour}">Colour</td>
-                <td th:text="${car.year}">Year</td>
-                <td th:text="${car.motorCapacity}">Motor Capacity</td>
-                <td th:text="${car.fuelType}">Fuel type</td>
-                <td th:text="${car.kilometers}">Kilometers</td>
-                <td th:text="${car.safetyLock}">Safety Lock</td>
-                <td th:text="${car.aluWheels}">Alu Wheels</td>
-                <td th:text="${car.phoneNumber}">Contact</td>
+            <tr th:each="carAdvertisement : ${cars}">
+                <td sec:authorize="hasRole('ROLE_ADMIN')" th:text="${carAdvertisement.id}">Id</td>
+                <td th:text="${carAdvertisement.carCompany}">Company</td>
+                <td th:text="${carAdvertisement.model}">Model</td>
+                <td th:text="${carAdvertisement.name}">Name</td>
+                <td th:text="${carAdvertisement.price}">Price</td>
+                <td th:text="${carAdvertisement.vinNumber}">Vin Number</td>
+                <td th:text="${carAdvertisement.colour}">Colour</td>
+                <td th:text="${carAdvertisement.year}">Year</td>
+                <td th:text="${carAdvertisement.motorCapacity}">Motor Capacity</td>
+                <td th:text="${carAdvertisement.fuelType}">Fuel type</td>
+                <td th:text="${carAdvertisement.kilometers}">Kilometers</td>
+                <td th:text="${carAdvertisement.safetyLock}">Safety Lock</td>
+                <td th:text="${carAdvertisement.aluWheels}">Alu Wheels</td>
+                <td th:text="${carAdvertisement.phoneNumber}">Contact</td>
                 <td>
                     <div th:if="${not #lists.isEmpty(cars)}" class="col-md-6">
                         <img src="../../static/images/audi.jpg"
-                             th:src="@{'/cars/' + ${car.id} + '/carimage'}"
+                             th:src="@{'/cars/' + ${carAdvertisement.id} + '/carimage'}"
                              width="200" height="200">
                     </div>
                 </td>

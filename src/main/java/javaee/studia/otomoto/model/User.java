@@ -3,11 +3,9 @@ package javaee.studia.otomoto.model;
 import lombok.Data;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
 
 
 @Entity
@@ -26,15 +24,9 @@ public class User {
     @Column(nullable = false)
     private String password;
     @Column(nullable = false)
-    private String fullname;
+    private String fullName;
     @Column(nullable = false)
-    private String street;
-    @Column(nullable = false)
-    private String city;
-    @Column(nullable = false)
-    private String state;
-    @Column(nullable = false)
-    private String zip;
+    private Address address;
     @Column(nullable = false)
     private String phoneNumber;
     private int active;
@@ -44,60 +36,29 @@ public class User {
     public User() {
     }
 
-    public User(String username, String email, String password, String fullname, String street, String city, String state, String zip, String phoneNumber) {
+    public User(String username, String email, String password, String fullName, Address address, String phoneNumber) {
         this.username = username;
         this.email = email;
         this.password = password;
-        this.fullname = fullname;
-        this.street = street;
-        this.city = city;
-        this.state = state;
-        this.zip = zip;
+        this.fullName = fullName;
+        this.address = address;
         this.phoneNumber = phoneNumber;
         this.roles = "USER";
         this.permissions = "ACCESS_TEST1";
         this.active = 1;
     }
 
-    public User(String username, String email, String password, String fullname, String street, String city, String state, String zip, String phoneNumber, String roles, String permissions) {
+    public User(String username, String email, String password, String fullName, Address address, String phoneNumber, String roles, String permissions) {
         this.username = username;
         this.email = email;
         this.password = password;
-        this.fullname = fullname;
-        this.street = street;
-        this.city = city;
-        this.state = state;
-        this.zip = zip;
+        this.fullName = fullName;
+        this.address = address;
         this.phoneNumber = phoneNumber;
         this.roles = roles;
         this.permissions = permissions;
         this.active = 1;
     }
-
-    public Long getId() { return id;}
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public int getActive() {
-        return active;
-    }
-
-    public String getPhoneNumber() {return phoneNumber;}
-
 
     public List<String> getRoleList() {
         if (this.roles.length() > 0) {
@@ -112,6 +73,5 @@ public class User {
         }
         return new ArrayList<>();
     }
-
 
 }

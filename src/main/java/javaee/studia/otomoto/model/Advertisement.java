@@ -1,19 +1,23 @@
 package javaee.studia.otomoto.model;
 
-import lombok.Data;
-import org.hibernate.annotations.GenericGenerator;
+import lombok.*;
+import javax.persistence.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
-@Entity
-@Data
+
+@MappedSuperclass
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Advertisement {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @GenericGenerator(name = "increment", strategy = "increment")
     private Long id;
+
+    private String title;
+
+    private String textAd;
+
 }

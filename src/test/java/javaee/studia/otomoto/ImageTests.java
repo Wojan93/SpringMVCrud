@@ -47,7 +47,7 @@ public class ImageTests {
     public void getImageForm() throws Exception {
         //given
         CarCommand command = new CarCommand();
-        command.setId(1L);
+ //       command.setId(1L);
 
         when(carService.findCommandById(anyLong())).thenReturn(command);
 
@@ -79,7 +79,7 @@ public class ImageTests {
 
         //given
         CarCommand command = new CarCommand();
-        command.setId(1L);
+  //      command.setId(1L);
 
         String s = "fake image text";
         Byte[] bytesBoxed = new Byte[s.getBytes().length];

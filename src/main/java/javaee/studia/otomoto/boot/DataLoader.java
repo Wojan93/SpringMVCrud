@@ -1,7 +1,8 @@
 package javaee.studia.otomoto.boot;
 
-import javaee.studia.otomoto.model.Car;
-import javaee.studia.otomoto.repository.CarRepository;
+import javaee.studia.otomoto.model.*;
+import javaee.studia.otomoto.repository.CarAdRepository;
+import javaee.studia.otomoto.repository.MtAdRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.io.ClassPathResource;
@@ -13,7 +14,8 @@ import java.io.IOException;
 @Component
 public class DataLoader implements CommandLineRunner {
 
-    private CarRepository carRepository;
+    private CarAdRepository carAdRepository;
+    private MtAdRepository mtAdRepository;
 
     private Byte[] byteToByteConv(ClassPathResource cpr) throws IOException {
 
@@ -22,7 +24,7 @@ public class DataLoader implements CommandLineRunner {
         Byte[] byteObjects = new Byte[arrayPic.length];
 
         int i = 0;
-    // Associating Byte array values with bytes. (byte[] to Byte[])
+        // Associating Byte array values with bytes. (byte[] to Byte[])
         for (byte b : arrayPic)
             byteObjects[i++] = b;
 
@@ -30,67 +32,95 @@ public class DataLoader implements CommandLineRunner {
     }
 
     @Autowired
-    public void setCarRepository(CarRepository carRepository) {
-        this.carRepository = carRepository;
+    public void setCarAdRepository(CarAdRepository carAdRepository) {
+        this.carAdRepository = carAdRepository;
+    }
+
+    @Autowired
+    public void setMtAdRepository(MtAdRepository mtAdRepository) {
+        this.mtAdRepository = mtAdRepository;
     }
 
     @Override
     public void run(String... strings) throws IOException {
-        this.carRepository.deleteAll();
-        Car car1 = new Car();
+        this.carAdRepository.deleteAll();
+        this.mtAdRepository.deleteAll();
 
-        car1.setCompany("Audi");
-        car1.setModel("A4");
-        car1.setName("Doskonala");
-        car1.setColour("Red");
-        car1.setVinNumber("VVZ0010012003040");
-        car1.setPrice(24999.00);
-        car1.setYear(2008);
-        car1.setMotorCapacity(1800);
-        car1.setFuelType("Benzyna");
-        car1.setKilometers(120000.40);
-        car1.setSafetyLock(true);
-        car1.setAluWheels(true);
-        car1.setPhoneNumber("100100100");
-        car1.setImage(byteToByteConv(new ClassPathResource("static/images/audi.jpg")));
+        CarAdvertisement carAdvertisement1 = new CarAdvertisement();
 
-        carRepository.save(car1);
+        carAdvertisement1.setTitle("Doskonala");
+        carAdvertisement1.setTextAd("Super Extra");
+        carAdvertisement1.setCarCompany(CarCompany.AUDI);
+        carAdvertisement1.setModel("A4");
+        carAdvertisement1.setColour("Red");
+        carAdvertisement1.setVinNumber("VVZ0010012003040");
+        carAdvertisement1.setPrice(24999.00);
+        carAdvertisement1.setYear(2008);
+        carAdvertisement1.setMotorCapacity(1800);
+        carAdvertisement1.setFuelType("Benzyna");
+        carAdvertisement1.setKilometers(120000.40);
+        carAdvertisement1.setSafetyLock(true);
+        carAdvertisement1.setAluWheels(true);
+        carAdvertisement1.setPhoneNumber("100100100");
+        carAdvertisement1.setImage(byteToByteConv(new ClassPathResource("static/images/audi.jpg")));
+
+        carAdRepository.save(carAdvertisement1);
         // store image to MySQL via SpringJPA 
 
-        Car car2 = new Car();
+        CarAdvertisement carAdvertisement2 = new CarAdvertisement();
 
-        car2.setCompany("Volkswagen");
-        car2.setModel("Passat");
-        car2.setName("Igla");
-        car2.setColour("Blue");
-        car2.setVinNumber("VWE4440012003040");
-        car2.setPrice(13999.00);
-        car2.setYear(2008);
-        car2.setMotorCapacity(3200);
-        car2.setFuelType("Benzyna");
-        car2.setKilometers(240000.40);
-        car2.setSafetyLock(true);
-        car2.setAluWheels(true);
-        car2.setPhoneNumber("200200200");
-        car2.setImage(byteToByteConv(new ClassPathResource("static/images/vw-passat.jpg")));
+        carAdvertisement2.setTitle("Doskonala2");
+        carAdvertisement2.setTextAd("Super Extra2");
+        carAdvertisement2.setCarCompany(CarCompany.VOLKSWAGEN);
+        carAdvertisement2.setModel("Passat");
+        carAdvertisement2.setColour("Blue");
+        carAdvertisement2.setVinNumber("VWE4440012003040");
+        carAdvertisement2.setPrice(13999.00);
+        carAdvertisement2.setYear(2008);
+        carAdvertisement2.setMotorCapacity(3200);
+        carAdvertisement2.setFuelType("Benzyna");
+        carAdvertisement2.setKilometers(240000.40);
+        carAdvertisement2.setSafetyLock(true);
+        carAdvertisement2.setAluWheels(true);
+        carAdvertisement2.setPhoneNumber("200200200");
+        carAdvertisement2.setImage(byteToByteConv(new ClassPathResource("static/images/vw-passat.jpg")));
 
-        carRepository.save(car2);
+        carAdRepository.save(carAdvertisement2);
 
-        Car car3 = new Car();
-        car3.setCompany("Toyota");
-        car3.setModel("Celica");
-        car3.setName("Zabytek");
-        car3.setColour("Blue");
-        car3.setVinNumber("VWE4440012003054");
-        car3.setPrice(20999.00);
-        car3.setYear(1997);
-        car3.setMotorCapacity(1800);
-        car3.setFuelType("Benzyna");
-        car3.setKilometers(210000.40);
-        car3.setSafetyLock(true);
-        car3.setAluWheels(true);
-        car3.setPhoneNumber("300300300");
-        car3.setImage(byteToByteConv(new ClassPathResource("static/images/Toyota.jpg")));
-        carRepository.save(car3);
+        CarAdvertisement carAdvertisement3 = new CarAdvertisement();
+
+        carAdvertisement3.setTitle("Doskonala3");
+        carAdvertisement3.setTextAd("Super Extra3");
+        carAdvertisement3.setCarCompany(CarCompany.TOYOTA);
+        carAdvertisement3.setModel("Celica");
+        carAdvertisement3.setColour("Blue");
+        carAdvertisement3.setVinNumber("VWE4440012003054");
+        carAdvertisement3.setPrice(20999.00);
+        carAdvertisement3.setYear(1997);
+        carAdvertisement3.setMotorCapacity(1800);
+        carAdvertisement3.setFuelType("Benzyna");
+        carAdvertisement3.setKilometers(210000.40);
+        carAdvertisement3.setSafetyLock(true);
+        carAdvertisement3.setAluWheels(true);
+        carAdvertisement3.setPhoneNumber("300300300");
+        carAdvertisement3.setImage(byteToByteConv(new ClassPathResource("static/images/Toyota.jpg")));
+        carAdRepository.save(carAdvertisement3);
+
+        MotorcycleAdvertisement motorcycleAdvertisement1 = new MotorcycleAdvertisement();
+
+        motorcycleAdvertisement1.setTitle("Jawka");
+        motorcycleAdvertisement1.setTextAd("Super Extra Jawa");
+        motorcycleAdvertisement1.setMotorcycleCompany(MotorcycleCompany.JAWA);
+        motorcycleAdvertisement1.setModel("350 TS");
+        motorcycleAdvertisement1.setColour("Black");
+        motorcycleAdvertisement1.setVinNumber("JAWA4440012003054");
+        motorcycleAdvertisement1.setPrice(290.00);
+        motorcycleAdvertisement1.setYear(1990);
+        motorcycleAdvertisement1.setMotorCapacity(350);
+        motorcycleAdvertisement1.setKilometers(2100.40);
+        motorcycleAdvertisement1.setPhoneNumber("0700880323");
+        motorcycleAdvertisement1.setImage(byteToByteConv(new ClassPathResource("static/images/jawa-350.jpg")));
+
+        mtAdRepository.save(motorcycleAdvertisement1);
     }
 }

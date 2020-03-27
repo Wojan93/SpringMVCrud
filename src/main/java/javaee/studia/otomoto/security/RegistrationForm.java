@@ -1,5 +1,6 @@
 package javaee.studia.otomoto.security;
 
+import javaee.studia.otomoto.model.Address;
 import javaee.studia.otomoto.model.User;
 import lombok.Data;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -56,8 +57,10 @@ public class RegistrationForm {
     public RegistrationForm() {
     }
 
+
+
     public User toUser(PasswordEncoder passwordEncoder) {
-        return new User(username, email, passwordEncoder.encode(password), fullname, street, city, state, zip, phone);
+        return new User(username, email, passwordEncoder.encode(password), fullname, new Address(street, city, state, zip), phone);
     }
 
 

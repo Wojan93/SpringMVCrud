@@ -23,13 +23,13 @@
                                     <a class="navbar-brand" href="#" th:href="@{/}">Home</a>
                                 </li>
                                 <li>
-                                    <a class="nav-link" th:href="@{/cars}">Cars</a>
+                                    <a class="nav-link" th:href="@{/main}">Main</a>
                                 </li>
                                 <li sec:authorize="isAuthenticated()">
-                                    <a class="nav-link" th:href="@{/cars/add}">Add Advertisement</a>
+                                    <a class="nav-link" th:href="@{/main/add}">Add Advertisement</a>
                                 </li>
                                 <li sec:authorize="isAuthenticated()">
-                                    <a class="nav-link" th:href="@{/cars/forsale}">Your Advertisements</a>
+                                    <a class="nav-link" th:href="@{/main/forsale}">Your Advertisements</a>
                                 </li>
                                 <li sec:authorize="hasRole('ROLE_ADMIN')">
                                     <a class="nav-link" th:href="@{/admin}">Admin</a>
@@ -40,7 +40,7 @@
                                     </a>
                                 </li>
                                 <li sec:authorize="isAuthenticated()">
-                                    <a class="navbar-brand" th:href="@{/cars/my-cart}"> <img src="/images/shopping-cart-icon.jpg">Cart</a>
+                                    <a class="navbar-brand" th:href="@{/main/my-cart}"> <img src="/images/shopping-cart-icon.jpg">Cart</a>
                                 </li>
                                 <li>
                                     <form sec:authorize="isAnonymous()" th:action="@{/login}"

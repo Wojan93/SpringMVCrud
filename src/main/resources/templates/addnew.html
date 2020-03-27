@@ -8,7 +8,7 @@
 <div class="container">
     <h2>Add new advertisement</h2>
     <div>
-        <form class="form-horizontal" th:object="${car}" th:action="@{/cars}"
+        <form class="form-horizontal" th:object="${carAdvertisement}" th:action="@{/main}"
               method="post">
             <div class="form-group">
                 <div class="col-sm-10">
@@ -18,12 +18,15 @@
             <div class="form-group">
                 <label class="col-sm-2 control-label">Company:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" th:field="*{company}"/>
+                    <select name="carCompany">
+                    <option th:each="carCompanyOpt : ${T(javaee.studia.otomoto.model.CarCompany).values()}"
+                            th:value="${carCompanyOpt}" th:text="${carCompanyOpt.displayValue}"></option>
+                    </select>
                 </div>
             </div>
-            <div th:if="${#fields.hasErrors('company')}"
+            <div th:if="${#fields.hasErrors('carCompany')}"
                  class="error">
-                <a th:each="err : ${#fields.errors('company')}" th:text="${err}"/></a>
+                <a th:each="err : ${#fields.errors('carCompany')}" th:text="${err}"/></a>
             </div>
 
             <div class="form-group">

@@ -1,7 +1,7 @@
 package javaee.studia.otomoto.service;
 
-import javaee.studia.otomoto.model.Car;
-import javaee.studia.otomoto.repository.CarRepository;
+import javaee.studia.otomoto.model.CarAdvertisement;
+import javaee.studia.otomoto.repository.CarAdRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,10 +14,10 @@ import java.io.IOException;
 @Service
 public class ImageServiceImpl implements ImageService {
 
-    private final CarRepository carRepository;
+    private final CarAdRepository carAdRepository;
 
-    public ImageServiceImpl(CarRepository carRepository) {
-        this.carRepository = carRepository;
+    public ImageServiceImpl(CarAdRepository carAdRepository) {
+        this.carAdRepository = carAdRepository;
     }
 
 
@@ -26,7 +26,7 @@ public class ImageServiceImpl implements ImageService {
     public void saveImageFile(Long carId, MultipartFile file) {
 
         try {
-            Car car = carRepository.findById(carId).get();
+            CarAdvertisement carAdvertisement = carAdRepository.findById(carId).get();
             Byte[] byteObjects = new Byte[file.getBytes().length];
             int i = 0;
 
@@ -34,8 +34,8 @@ public class ImageServiceImpl implements ImageService {
                 byteObjects[i++] = b;
             }
 
-            car.setImage(byteObjects);
-            carRepository.save(car);
+            carAdvertisement.setImage(byteObjects);
+            carAdRepository.save(carAdvertisement);
 
         } catch (IOException e) {
 

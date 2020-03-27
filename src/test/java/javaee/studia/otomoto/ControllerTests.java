@@ -1,8 +1,9 @@
 package javaee.studia.otomoto;
 import javaee.studia.otomoto.controller.CarController;
-import javaee.studia.otomoto.model.Car;
+import javaee.studia.otomoto.model.CarAdvertisement;
 import javaee.studia.otomoto.model.UserPrincipal;
-import javaee.studia.otomoto.repository.CarRepository;
+import javaee.studia.otomoto.repository.CarAdRepository;
+import javaee.studia.otomoto.repository.MtAdRepository;
 import javaee.studia.otomoto.repository.UserRepository;
 import javaee.studia.otomoto.security.UserPrincipalDetailsService;
 import javaee.studia.otomoto.service.CarService;
@@ -27,7 +28,9 @@ public class ControllerTests {
     @Mock
     CarService carService;
 
-    CarRepository carRepository;
+    CarAdRepository carAdRepository;
+
+    MtAdRepository mtAdRepository;
 
     UserRepository userRepository;
 
@@ -43,17 +46,17 @@ public class ControllerTests {
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
 
-        controller = new CarController(carRepository, userRepository, userDetailsService, userPrincipal);
+        controller = new CarController(carAdRepository, mtAdRepository, userRepository, userDetailsService, userPrincipal);
         mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
     }
 
     @Test
     public void testCreateProduct() throws Exception {
 
-        Car car = new Car();
-        car.setId(1L);
+        CarAdvertisement carAdvertisement = new CarAdvertisement();
+        carAdvertisement.setId(1L);
 
-        when(carService.findById(anyLong())).thenReturn(car);
+        when(carService.findCarById(anyLong())).thenReturn(carAdvertisement);
 
         mockMvc.perform(get("/cars/add"))
                 .andExpect(status().isOk())

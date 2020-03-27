@@ -1,9 +1,11 @@
 package javaee.studia.otomoto.controller;
 
-import javaee.studia.otomoto.model.Car;
+import javaee.studia.otomoto.model.CarAdvertisement;
+import javaee.studia.otomoto.model.MotorcycleAdvertisement;
 import javaee.studia.otomoto.model.UserPrincipal;
-import javaee.studia.otomoto.repository.CarRepository;
+import javaee.studia.otomoto.repository.CarAdRepository;
 import javax.validation.Valid;
+import javaee.studia.otomoto.repository.MtAdRepository;
 import javaee.studia.otomoto.repository.UserRepository;
 import javaee.studia.otomoto.security.UserPrincipalDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,98 +22,82 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 public class CarController {
 
-    private CarRepository carRepository;
+    private CarAdRepository carAdRepository;
+    private MtAdRepository mtAdRepository;
     private UserRepository userRepository;
     private UserPrincipalDetailsService userDetailsService;
     private UserPrincipal userPrincipal;
 
 
     @Autowired
-    public CarController(CarRepository carRepository, UserRepository userRepository, UserPrincipalDetailsService userDetailsService, UserPrincipal userPrincipal) {
-        this.carRepository = carRepository;
+    public CarController(CarAdRepository carAdRepository, MtAdRepository mtAdRepository, UserRepository userRepository, UserPrincipalDetailsService userDetailsService, UserPrincipal userPrincipal) {
+        this.carAdRepository = carAdRepository;
+        this.mtAdRepository = mtAdRepository;
         this.userRepository = userRepository;
         this.userDetailsService = userDetailsService;
         this.userPrincipal = userPrincipal;
     }
 
+    @RequestMapping(path = "/main/add-new-car", method = RequestMethod.GET)
+    public String createCar(Model model) {
+        model.addAttribute("car", new CarAdvertisement());
 
-    @InitBinder
-    public void initBinder(WebDataBinder webDataBinder) {
-        StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
-        webDataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
+        return "add-new-car";
     }
-
-
-    @RequestMapping(path = "/cars/add", method = RequestMethod.GET)
-    public String createProduct(Model model) {
-        model.addAttribute("car", new Car());
-        return "addnew";
-    }
-
 
     @RequestMapping(path = "cars", method = RequestMethod.POST)
-    public String saveCar(@Valid @ModelAttribute("car") Car car, BindingResult bindingResult) {
+    public String saveCar(@Valid @ModelAttribute("car") CarAdvertisement carAdvertisement, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
             return "edit";
         } else {
             String username = getUsername();
-            car.setSeller(userRepository.findByUsername(username).getId());
-            car.setPhoneNumber(userRepository.findByUsername(username).getPhoneNumber());
-            carRepository.save(car);
+            carAdvertisement.setSeller(userRepository.findByUsername(username).getId());
+            carAdvertisement.setPhoneNumber(userRepository.findByUsername(username).getPhoneNumber());
+            carAdRepository.save(carAdvertisement);
+
             return "redirect:/";
         }
     }
 
-
-    @RequestMapping(path = "/cars", method = RequestMethod.GET)
+    @RequestMapping(path = "/main", method = RequestMethod.GET)
     public String getAllCars(Model model) {
-        model.addAttribute("cars", carRepository.findByBuyerIsNull());
-        return "cars";
+        model.addAttribute("cars", carAdRepository.findByBuyerIsNull());
+
+        return "main/cars";
     }
 
-
-    @RequestMapping(path = "/cars/my-cart", method = RequestMethod.GET)
-    public String getBuyedCars(Model model) {
-
-        String username = getUsername();
-
-        model.addAttribute("cars", carRepository.findByBuyer(userRepository.findByUsername(username).getId()));
-        return "my-cart";
-    }
-
-
-    @RequestMapping(path = "/cars/forsale", method = RequestMethod.GET)
+    @RequestMapping(path = "/main/cars/forsale", method = RequestMethod.GET)
     public String getForSaleCars(Model model) {
-
         String username = getUsername();
+        model.addAttribute("cars", carAdRepository.findBySeller(userRepository.findByUsername(username).getId()));
 
-        model.addAttribute("cars", carRepository.findBySeller(userRepository.findByUsername(username).getId()));
-        return "cars-forsale";
+        return "forsale/cars";
     }
 
-    @RequestMapping(path = "/cars/edit/{id}", method = RequestMethod.GET)
+    @RequestMapping(path = "/main/cars/edit/{id}", method = RequestMethod.GET)
     public String editCar(Model model, @PathVariable(value = "id") Long id) {
-        model.addAttribute("car", carRepository.findById(id));
+        model.addAttribute("car", carAdRepository.findById(id));
+
         return "edit";
     }
 
 
-    @RequestMapping(path = "/cars/buy/{id}", method = RequestMethod.GET)
+    @RequestMapping(path = "/main/buy/{id}", method = RequestMethod.GET)
     public String buyCar(@PathVariable(name = "id") Long id) {
-        Car car = carRepository.getOne(id);
-
+        CarAdvertisement carAdvertisement = carAdRepository.getOne(id);
         String username = getUsername();
+        carAdvertisement.setBuyer(userRepository.findByUsername(username).getId());
+        carAdRepository.save(carAdvertisement);
 
-        car.setBuyer(userRepository.findByUsername(username).getId());
-        carRepository.save(car);
-        return "redirect:/cars";
+        return "redirect:/main";
     }
 
-    @RequestMapping(path = "/cars/delete/{id}", method = RequestMethod.GET)
+    @RequestMapping(path = "/main/delete/{id}", method = RequestMethod.GET)
     public String deleteCar(@PathVariable(name = "id") Long id) {
-        carRepository.deleteById(id);
-        return "redirect:/cars";
+        carAdRepository.deleteById(id);
+
+        return "redirect:/main";
     }
 
 
@@ -125,4 +111,6 @@ public class CarController {
         }
         return username;
     }
+
+
 }

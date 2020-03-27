@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en">
+<head>
+    <title>Motorcycles</title>
+    <th:block th:include="layout/header"></th:block>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('a[data-toggle="tab"]').on('shown.bs.tab', function(e){
+                var activeTab = $(e.target).text(); // Get the name of active tab
+                var previousTab = $(e.relatedTarget).text(); // Get the name of previous tab
+                $(".active-tab span").html(activeTab);
+                $(".previous-tab span").html(previousTab);
+            });
+        });
+    </script>
+    <meta charset="UTF-8">
+
+</head>
+<body>
+
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item">
+        <a class="nav-link active" id="cars-tab" data-toggle="tab" th:href="${'/main'}" role="tab" aria-controls="cars"
+           aria-selected="false">Cars</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="motorcycles-tab" data-toggle="tab" href="#MotorcyclesTabContent" role="tab"
+           aria-controls="motorcycles" aria-selected="true">Motorcycles</a>
+    </li>
+</ul>
+<div class="tab-content" id="MotorcyclesTabContent">
+<div class="tab-pane fade show active" id="motorcycles" role="tabpanel" aria-labelledby="motorcycles-tab">
+    <div th:if="${not #lists.isEmpty(motorcycles)}">
+        <h2>All Motorcycles</h2>
+        <label for="myMtSearch">Search title: </label>
+        <input type="text" id="myMtSearch" onkeyup="myFunction()" placeholder="Search for cars..">
+        <table id="MotorcyclesTable" class="table table-striped table-bordered table-sm" cellspacing="0" width="80%">
+            <tr>
+                <th class="th-sm" style="cursor:pointer" sec:authorize="hasRole('ROLE_ADMIN')">Id</th>
+                <th class="th-sm" onclick="sortTable(0)" style="cursor:pointer">Title</th>
+                <th class="th-sm" onclick="sortTable(1)" style="cursor:pointer">Company</th>
+                <th class="th-sm" onclick="sortTable(2)" style="cursor:pointer">Model</th>
+                <th class="th-sm" onclick="sortTable(3)" style="cursor:pointer">Year</th>
+                <th class="th-sm" onclick="sortTable(4)" style="cursor:pointer">Price</th>
+            </tr>
+            <tr th:each="motorcycleAdvertisement : ${motorcycles}">
+                <td class="align-middle" sec:authorize="hasRole('ROLE_ADMIN')" th:text="${motorcycleAdvertisement.id}">
+                    Id
+                </td>
+                <td class="align-middle" th:text="${motorcycleAdvertisement.title}">Title</td>
+                <td class="align-middle" th:text="${motorcycleAdvertisement.motorcycleCompany}">Company</td>
+                <td class="align-middle" th:text="${motorcycleAdvertisement.model}">Model</td>
+                <td class="align-middle" th:text="${motorcycleAdvertisement.year}">Year</td>
+                <td class="align-middle" th:text="${motorcycleAdvertisement.price + ' zł'}">Price</td>
+                <td>
+                    <div class="col-md-6">
+                        <img src="../../static/images/audi.jpg"
+                             th:src="@{'/main/motorcycles/' + ${motorcycleAdvertisement.id} + '/mtimage'}"
+                             width="200" height="200">
+                    </div>
+                </td>
+                <td><a sec:authorize="hasRole('ROLE_ADMIN')" th:href="${'/main/motorcycles/edit/' + motorcycleAdvertisement.id}"
+                       class="btn btn-warning">Edit</a></td>
+                <td><a sec:authorize="hasRole('ROLE_ADMIN')" th:href="${'/main/motorcycles/delete/' + motorcycleAdvertisement.id}"
+                       class="btn btn-danger">Delete</a></td>
+                <td><a sec:authorize="isAuthenticated() && !hasRole('ROLE_ADMIN')"
+                       th:href="${'/main/motorcycles/buy/' + motorcycleAdvertisement.id}" class="btn btn-danger">Add to Cart</a>
+                </td>
+            </tr>
+        </table>
+
+    </div>
+
+</div>
+</div>
+
+</body>
+</html>

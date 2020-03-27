@@ -1,8 +1,6 @@
 package javaee.studia.otomoto.commands;
 
-
-import javaee.studia.otomoto.model.Advertisement;
-import javaee.studia.otomoto.model.CarCompany;
+import javaee.studia.otomoto.model.MotorcycleCompany;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,12 +8,12 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class CarCommand {
+public class MotorcycleCommand {
 
     private Long id;
     private String title;
     private String textAd;
-    private CarCompany carCompany;
+    private MotorcycleCompany motorcycleCompany;
     private String model;
     private String name;
     private String vinNumber;
@@ -23,12 +21,8 @@ public class CarCommand {
     private Double price;
     private int year;
     private int motorCapacity;
-    private String fuelType;
     private Double kilometers;
-    private Boolean safetyLock;
-    private Boolean aluWheels;
     private Long seller;
     private Long buyer;
     private Byte[] image;
-
 }

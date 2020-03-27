@@ -5,26 +5,37 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
-import lombok.Data;
-import org.hibernate.annotations.GenericGenerator;
-
+import lombok.*;
 
 @Entity
-@Data
-public class Car {
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+public class CarAdvertisement extends Advertisement {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @GenericGenerator(name = "increment", strategy = "increment")
-    private Long id;
-
+    @Builder
+    public CarAdvertisement(Long id, String title, String textAd, CarCompany carCompany, String model, String vinNumber, String colour,
+                            Double price, int year, int motorCapacity, String fuelType, Double kilometers, Boolean safetyLock, Boolean aluWheels) {
+        super(id, title, textAd);
+        this.carCompany = carCompany;
+        this.model = model;
+        this.vinNumber = vinNumber;
+        this.colour = colour;
+        this.price = price;
+        this.year = year;
+        this.motorCapacity = motorCapacity;
+        this.fuelType = fuelType;
+        this.kilometers = kilometers;
+        this.safetyLock = safetyLock;
+        this.aluWheels = aluWheels;
+    }
 
     @NotNull(message = "is required")
-    private String company;
+    @Enumerated(EnumType.STRING)
+    private CarCompany carCompany;
     @NotNull(message = "is required")
     private String model;
-    @NotNull(message = "is required")
-    private String name;
     @NotNull(message = "is required")
     private String vinNumber;
     @NotNull(message = "is required")
@@ -32,7 +43,7 @@ public class Car {
     @NotNull(message = "is required")
     private Double price;
     @NotNull(message = "is required")
-	@Min(value = 1900, message = "must be greater than 1900 and less than 2021")
+    @Min(value = 1900, message = "must be greater than 1900 and less than 2021")
     @Max(value = 2020, message = "must be greater than 1900 and less than 2021")
     private int year;
     @NotNull(message = "is required")
@@ -51,7 +62,4 @@ public class Car {
     private String phoneNumber;
     @Lob
     private Byte[] image;
-
-
-
 }

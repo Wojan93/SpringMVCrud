@@ -1,15 +1,15 @@
 package javaee.studia.otomoto.service;
 
-import javaee.studia.otomoto.commands.CarCommand;
-import javaee.studia.otomoto.model.Car;
+        import javaee.studia.otomoto.commands.CarCommand;
+        import javaee.studia.otomoto.model.CarAdvertisement;
 
-import java.util.Set;
+        import java.util.Set;
 
 public interface CarService {
 
-    Set<Car> getCars();
+    Set<CarAdvertisement> getCars();
 
-    Car findById(Long l);
+    CarAdvertisement findCarById(Long l);
 
     CarCommand findCommandById(Long l);
 
