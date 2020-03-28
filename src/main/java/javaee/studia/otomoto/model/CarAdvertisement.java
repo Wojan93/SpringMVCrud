@@ -5,6 +5,9 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
+import javaee.studia.otomoto.model.enums.CarCompany;
+import javaee.studia.otomoto.model.enums.Colour;
+import javaee.studia.otomoto.model.enums.FuelType;
 import lombok.*;
 
 @Entity
@@ -15,8 +18,8 @@ import lombok.*;
 public class CarAdvertisement extends Advertisement {
 
     @Builder
-    public CarAdvertisement(Long id, String title, String textAd, CarCompany carCompany, String model, String vinNumber, String colour,
-                            Double price, int year, int motorCapacity, String fuelType, Double kilometers, Boolean safetyLock, Boolean aluWheels) {
+    public CarAdvertisement(Long id, String title, String textAd, CarCompany carCompany, String model, String vinNumber, Colour colour,
+                            Double price, int year, int motorCapacity, FuelType fuelType, Double kilometers, Boolean safetyLock, Boolean aluWheels) {
         super(id, title, textAd);
         this.carCompany = carCompany;
         this.model = model;
@@ -39,7 +42,8 @@ public class CarAdvertisement extends Advertisement {
     @NotNull(message = "is required")
     private String vinNumber;
     @NotNull(message = "is required")
-    private String colour;
+    @Enumerated(EnumType.STRING)
+    private Colour colour;
     @NotNull(message = "is required")
     private Double price;
     @NotNull(message = "is required")
@@ -50,7 +54,8 @@ public class CarAdvertisement extends Advertisement {
     @Min(value = 1, message = "must be valid")
     private int motorCapacity;
     @NotNull(message = "is required")
-    private String fuelType;
+    @Enumerated(EnumType.STRING)
+    private FuelType fuelType;
     @NotNull(message = "is required")
     private Double kilometers;
     @NotNull(message = "is required")

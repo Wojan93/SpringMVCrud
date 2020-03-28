@@ -41,7 +41,7 @@ public class MotorcycleController {
     public String saveMotorcycle(@Valid @ModelAttribute("motorcycle") MotorcycleAdvertisement motorcycleAdvertisement, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
-            return "edit";
+            return "edit-car";
         } else {
             String username = getUsername();
 
@@ -82,7 +82,7 @@ public class MotorcycleController {
     public String editMotorcycle(Model model, @PathVariable(value = "id") Long id) {
         model.addAttribute("motorcycle", mtAdRepository.findById(id));
 
-        return "edit";
+        return "edit-car";
     }
 
 

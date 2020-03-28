@@ -1,6 +1,10 @@
 package javaee.studia.otomoto.boot;
 
 import javaee.studia.otomoto.model.*;
+import javaee.studia.otomoto.model.enums.CarCompany;
+import javaee.studia.otomoto.model.enums.Colour;
+import javaee.studia.otomoto.model.enums.FuelType;
+import javaee.studia.otomoto.model.enums.MotorcycleCompany;
 import javaee.studia.otomoto.repository.CarAdRepository;
 import javaee.studia.otomoto.repository.MtAdRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,12 +56,12 @@ public class DataLoader implements CommandLineRunner {
         carAdvertisement1.setTextAd("Super Extra");
         carAdvertisement1.setCarCompany(CarCompany.AUDI);
         carAdvertisement1.setModel("A4");
-        carAdvertisement1.setColour("Red");
+        carAdvertisement1.setColour(Colour.SILVER);
         carAdvertisement1.setVinNumber("VVZ0010012003040");
         carAdvertisement1.setPrice(24999.00);
         carAdvertisement1.setYear(2008);
         carAdvertisement1.setMotorCapacity(1800);
-        carAdvertisement1.setFuelType("Benzyna");
+        carAdvertisement1.setFuelType(FuelType.PETROL);
         carAdvertisement1.setKilometers(120000.40);
         carAdvertisement1.setSafetyLock(true);
         carAdvertisement1.setAluWheels(true);
@@ -73,12 +77,12 @@ public class DataLoader implements CommandLineRunner {
         carAdvertisement2.setTextAd("Super Extra2");
         carAdvertisement2.setCarCompany(CarCompany.VOLKSWAGEN);
         carAdvertisement2.setModel("Passat");
-        carAdvertisement2.setColour("Blue");
+        carAdvertisement2.setColour(Colour.NAVY_BLUE);
         carAdvertisement2.setVinNumber("VWE4440012003040");
         carAdvertisement2.setPrice(13999.00);
         carAdvertisement2.setYear(2008);
         carAdvertisement2.setMotorCapacity(3200);
-        carAdvertisement2.setFuelType("Benzyna");
+        carAdvertisement2.setFuelType(FuelType.PETROL);
         carAdvertisement2.setKilometers(240000.40);
         carAdvertisement2.setSafetyLock(true);
         carAdvertisement2.setAluWheels(true);
@@ -93,12 +97,12 @@ public class DataLoader implements CommandLineRunner {
         carAdvertisement3.setTextAd("Super Extra3");
         carAdvertisement3.setCarCompany(CarCompany.TOYOTA);
         carAdvertisement3.setModel("Celica");
-        carAdvertisement3.setColour("Blue");
+        carAdvertisement3.setColour(Colour.GREEN);
         carAdvertisement3.setVinNumber("VWE4440012003054");
         carAdvertisement3.setPrice(20999.00);
         carAdvertisement3.setYear(1997);
         carAdvertisement3.setMotorCapacity(1800);
-        carAdvertisement3.setFuelType("Benzyna");
+        carAdvertisement3.setFuelType(FuelType.DIESEL);
         carAdvertisement3.setKilometers(210000.40);
         carAdvertisement3.setSafetyLock(true);
         carAdvertisement3.setAluWheels(true);
@@ -112,7 +116,7 @@ public class DataLoader implements CommandLineRunner {
         motorcycleAdvertisement1.setTextAd("Super Extra Jawa");
         motorcycleAdvertisement1.setMotorcycleCompany(MotorcycleCompany.JAWA);
         motorcycleAdvertisement1.setModel("350 TS");
-        motorcycleAdvertisement1.setColour("Black");
+        motorcycleAdvertisement1.setColour(Colour.BLACK);
         motorcycleAdvertisement1.setVinNumber("JAWA4440012003054");
         motorcycleAdvertisement1.setPrice(290.00);
         motorcycleAdvertisement1.setYear(1990);

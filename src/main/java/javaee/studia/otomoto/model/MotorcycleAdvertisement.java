@@ -1,5 +1,7 @@
 package javaee.studia.otomoto.model;
 
+import javaee.studia.otomoto.model.enums.Colour;
+import javaee.studia.otomoto.model.enums.MotorcycleCompany;
 import lombok.*;
 
 import javax.persistence.*;
@@ -14,8 +16,8 @@ import javax.validation.constraints.NotNull;
 public class MotorcycleAdvertisement extends Advertisement {
 
     @Builder
-    public MotorcycleAdvertisement(Long id, String title, String textAd, MotorcycleCompany motorcycleCompany, String model, String vinNumber, String colour,
-                            Double price, int year, int motorCapacity, Double kilometers) {
+    public MotorcycleAdvertisement(Long id, String title, String textAd, MotorcycleCompany motorcycleCompany, String model, String vinNumber, Colour colour,
+                                   Double price, int year, int motorCapacity, Double kilometers) {
         super(id, title, textAd);
         this.motorcycleCompany = motorcycleCompany;
         this.model = model;
@@ -36,7 +38,8 @@ public class MotorcycleAdvertisement extends Advertisement {
     @NotNull(message = "is required")
     private String vinNumber;
     @NotNull(message = "is required")
-    private String colour;
+    @Enumerated(EnumType.STRING)
+    private Colour colour;
     @NotNull(message = "is required")
     private Double price;
     @NotNull(message = "is required")

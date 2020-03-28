@@ -37,7 +37,7 @@ public class CarController {
 
     @RequestMapping(path = "/main/add-new-car", method = RequestMethod.GET)
     public String createCar(Model model) {
-        model.addAttribute("car", new CarAdvertisement());
+        model.addAttribute("carAdvertisement", new CarAdvertisement());
 
         return "add-new-car";
     }
@@ -46,7 +46,7 @@ public class CarController {
     public String saveCar(@Valid @ModelAttribute("car") CarAdvertisement carAdvertisement, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
-            return "edit";
+            return "edit-car";
         } else {
             String username = getUsername();
             carAdvertisement.setSeller(userRepository.findByUsername(username).getId());
@@ -70,11 +70,11 @@ public class CarController {
     public String editCar(Model model, @PathVariable(value = "id") Long id) {
         model.addAttribute("car", carAdRepository.findById(id));
 
-        return "edit";
+        return "edit-car";
     }
 
 
-    @RequestMapping(path = "/main/buy/{id}", method = RequestMethod.GET)
+    @RequestMapping(path = "/main/cars/buy/{id}", method = RequestMethod.GET)
     public String buyCar(@PathVariable(name = "id") Long id) {
         CarAdvertisement carAdvertisement = carAdRepository.getOne(id);
         String username = getUsername();
@@ -84,7 +84,7 @@ public class CarController {
         return "redirect:/main";
     }
 
-    @RequestMapping(path = "/main/delete/{id}", method = RequestMethod.GET)
+    @RequestMapping(path = "/main/cars/delete/{id}", method = RequestMethod.GET)
     public String deleteCar(@PathVariable(name = "id") Long id) {
         carAdRepository.deleteById(id);
 

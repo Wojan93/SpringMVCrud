@@ -1,6 +1,7 @@
 package javaee.studia.otomoto.commands;
 
-import javaee.studia.otomoto.model.MotorcycleCompany;
+import javaee.studia.otomoto.model.enums.Colour;
+import javaee.studia.otomoto.model.enums.MotorcycleCompany;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -17,7 +18,7 @@ public class MotorcycleCommand {
     private String model;
     private String name;
     private String vinNumber;
-    private String colour;
+    private Colour colour;
     private Double price;
     private int year;
     private int motorCapacity;
