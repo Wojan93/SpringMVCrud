@@ -5,8 +5,8 @@
     <th:block th:include="layout/header"></th:block>
 
     <script type="text/javascript">
-        $(document).ready(function(){
-            $('a[data-toggle="tab"]').on('shown.bs.tab', function(e){
+        $(document).ready(function () {
+            $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
                 var activeTab = $(e.target).text(); // Get the name of active tab
                 var previousTab = $(e.relatedTarget).text(); // Get the name of previous tab
                 $(".active-tab span").html(activeTab);
@@ -19,7 +19,8 @@
 <div class="container-fluid">
     <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item" class="active">
-            <a  class="nav-link active" id="cars-tab" data-toggle="tab" th:href="${'/main/cars'}" role="tab" aria-controls="cars"
+            <a class="nav-link active" id="cars-tab" data-toggle="tab" th:href="${'/main/cars'}" role="tab"
+               aria-controls="cars"
                aria-selected="true">Cars</a>
         </li>
         <li class="nav-item">
@@ -30,7 +31,6 @@
 
 
 </div>
-
 
 
 </body>

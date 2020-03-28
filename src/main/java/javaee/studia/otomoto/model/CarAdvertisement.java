@@ -62,4 +62,5 @@ public class CarAdvertisement extends Advertisement {
     private String phoneNumber;
     @Lob
     private Byte[] image;
+
 }

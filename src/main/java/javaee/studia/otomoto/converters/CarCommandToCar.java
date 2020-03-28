@@ -38,7 +38,7 @@ public class CarCommandToCar implements Converter<CarCommand, CarAdvertisement> 
         carAdvertisement.setSafetyLock(source.getSafetyLock());
         carAdvertisement.setAluWheels(source.getAluWheels());
         carAdvertisement.setImage(source.getImage());
-
+        carAdvertisement.setPhoneNumber(source.getPhoneNumber());
 
         return carAdvertisement;
     }

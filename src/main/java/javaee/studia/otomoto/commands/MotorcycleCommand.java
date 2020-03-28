@@ -22,6 +22,7 @@ public class MotorcycleCommand {
     private int year;
     private int motorCapacity;
     private Double kilometers;
+    private String phoneNumber;
     private Long seller;
     private Long buyer;
     private Byte[] image;

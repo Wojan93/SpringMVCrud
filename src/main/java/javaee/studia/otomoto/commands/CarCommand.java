@@ -27,6 +27,7 @@ public class CarCommand {
     private Double kilometers;
     private Boolean safetyLock;
     private Boolean aluWheels;
+    private String phoneNumber;
     private Long seller;
     private Long buyer;
     private Byte[] image;

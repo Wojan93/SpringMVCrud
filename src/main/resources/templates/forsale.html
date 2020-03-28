@@ -11,9 +11,9 @@
         <table class="table table-striped">
             <tr>
                 <th sec:authorize="hasRole('ROLE_ADMIN')">Id</th>
-                <th>Title</th>
                 <th>Company</th>
                 <th>Model</th>
+                <th>Name</th>
                 <th>Price</th>
                 <th>VinNumber</th>
                 <th>Colour</th>
@@ -23,13 +23,12 @@
                 <th>Kilometers</th>
                 <th>Safety Lock</th>
                 <th>Alu Wheels</th>
-                <th>Contact</th>
             </tr>
             <tr th:each="carAdvertisement : ${cars}">
                 <td sec:authorize="hasRole('ROLE_ADMIN')" th:text="${carAdvertisement.id}">Id</td>
-                <td th:text="${carAdvertisement.title}">Title</td>
                 <td th:text="${carAdvertisement.carCompany}">Company</td>
                 <td th:text="${carAdvertisement.model}">Model</td>
+                <td th:text="${carAdvertisement.name}">Name</td>
                 <td th:text="${carAdvertisement.price}">Price</td>
                 <td th:text="${carAdvertisement.vinNumber}">Vin Number</td>
                 <td th:text="${carAdvertisement.colour}">Colour</td>
@@ -39,13 +38,14 @@
                 <td th:text="${carAdvertisement.kilometers}">Kilometers</td>
                 <td th:text="${carAdvertisement.safetyLock}">Safety Lock</td>
                 <td th:text="${carAdvertisement.aluWheels}">Alu Wheels</td>
-                <td th:text="${carAdvertisement.phoneNumber}">Contact</td>
                 <td>
-                    <div th:if="${not #lists.isEmpty(cars)}" class="col-md-6">
+                    <div class="col-md-6">
                         <img src="../../static/images/audi.jpg"
                              th:src="@{'/cars/' + ${carAdvertisement.id} + '/carimage'}"
                              width="200" height="200">
                     </div>
+                </td>
+                <td><a sec:authorize="isAuthenticated()" th:href="${'/cars/edit/' + carAdvertisement.id}" class="btn btn-warning">Edit</a>
                 </td>
             </tr>
         </table>
@@ -86,17 +86,12 @@
                 <td><a sec:authorize="hasRole('ROLE_ADMIN')"
                        th:href="${'/main/motorcycles/edit/' + motorcycleAdvertisement.id}"
                        class="btn btn-warning">Edit</a></td>
-                <td><a sec:authorize="hasRole('ROLE_ADMIN')"
-                       th:href="${'/main/motorcycles/delete/' + motorcycleAdvertisement.id}"
-                       class="btn btn-danger">Delete</a></td>
-                <td><a sec:authorize="isAuthenticated() && !hasRole('ROLE_ADMIN')"
-                       th:href="${'/main/motorcycles/buy/' + motorcycleAdvertisement.id}" class="btn btn-danger">Add
-                    to Cart</a>
-                </td>
             </tr>
         </table>
 
     </div>
+
+</div>
 </div>
 </body>
 </html>

@@ -38,7 +38,7 @@ public class MotorcycleToMororcycleCommand implements Converter<MotorcycleAdvert
         command.setMotorCapacity(source.getMotorCapacity());
         command.setKilometers(source.getKilometers());
         command.setImage(source.getImage());
-
+        command.setPhoneNumber(source.getPhoneNumber());
 
         return command;
     }

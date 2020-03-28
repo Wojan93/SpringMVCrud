@@ -1,7 +1,6 @@
 package javaee.studia.otomoto.controller;
 
 import javaee.studia.otomoto.model.CarAdvertisement;
-import javaee.studia.otomoto.model.MotorcycleAdvertisement;
 import javaee.studia.otomoto.model.UserPrincipal;
 import javaee.studia.otomoto.repository.CarAdRepository;
 import javax.validation.Valid;
@@ -9,13 +8,11 @@ import javaee.studia.otomoto.repository.MtAdRepository;
 import javaee.studia.otomoto.repository.UserRepository;
 import javaee.studia.otomoto.security.UserPrincipalDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -67,13 +64,7 @@ public class CarController {
         return "main/cars";
     }
 
-    @RequestMapping(path = "/main/cars/forsale", method = RequestMethod.GET)
-    public String getForSaleCars(Model model) {
-        String username = getUsername();
-        model.addAttribute("cars", carAdRepository.findBySeller(userRepository.findByUsername(username).getId()));
 
-        return "forsale/cars";
-    }
 
     @RequestMapping(path = "/main/cars/edit/{id}", method = RequestMethod.GET)
     public String editCar(Model model, @PathVariable(value = "id") Long id) {
@@ -100,6 +91,12 @@ public class CarController {
         return "redirect:/main";
     }
 
+
+    @GetMapping("/main/cars/{id}/show")
+    public String showCarId(@PathVariable(name = "id") Long id, Model model){
+        model.addAttribute("carAdvertisement", carAdRepository.getOne(id));
+        return "main/show-a-car";
+    }
 
     private String getUsername() {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();

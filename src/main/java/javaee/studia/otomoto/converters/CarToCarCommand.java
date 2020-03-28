@@ -40,6 +40,7 @@ public class CarToCarCommand implements Converter<CarAdvertisement, CarCommand> 
         command.setSafetyLock(source.getSafetyLock());
         command.setAluWheels(source.getAluWheels());
         command.setImage(source.getImage());
+        command.setPhoneNumber(source.getPhoneNumber());
 
 
         return command;

@@ -53,11 +53,14 @@ public class MainController {
         webDataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
     }
 
-//    @GetMapping("/main")
-  //  public String displayMainPage() {
- //       return "/main/cars";
-//    }
+    @RequestMapping(path = "/main/forsale", method = RequestMethod.GET)
+    public String getForSaleCars(Model model) {
+        String username = getUsername();
+        model.addAttribute("cars", carAdRepository.findBySeller(userRepository.findByUsername(username).getId()));
+        model.addAttribute("motorcycles", mtAdRepository.findBySeller(userRepository.findByUsername(username).getId()));
 
+        return "forsale";
+    }
 
     @RequestMapping(path = "/main/my-cart", method = RequestMethod.GET)
     public String getBoughtItems(Model model) {

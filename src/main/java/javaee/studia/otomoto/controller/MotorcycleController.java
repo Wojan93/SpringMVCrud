@@ -10,10 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -71,7 +68,7 @@ public class MotorcycleController {
     }
 
 
-  @RequestMapping(path = "/main/motorcycle/main/forsale", method = RequestMethod.GET)
+  @RequestMapping(path = "/main/motorcycles/main/forsale", method = RequestMethod.GET)
     public String getForSaleMotorcycles(Model model) {
         String username = getUsername();
 
@@ -81,7 +78,7 @@ public class MotorcycleController {
     }
 
 
-    @RequestMapping(path = "/main/motorcycle/edit/{id}", method = RequestMethod.GET)
+    @RequestMapping(path = "/main/motorcycles/edit/{id}", method = RequestMethod.GET)
     public String editMotorcycle(Model model, @PathVariable(value = "id") Long id) {
         model.addAttribute("motorcycle", mtAdRepository.findById(id));
 
@@ -89,7 +86,7 @@ public class MotorcycleController {
     }
 
 
-    @RequestMapping(path = "/main/motorcycle/buy/{id}", method = RequestMethod.GET)
+    @RequestMapping(path = "/main/motorcycles/buy/{id}", method = RequestMethod.GET)
     public String buyMotorcycle(@PathVariable(name = "id") Long id) {
         MotorcycleAdvertisement motorcycleAdvertisement = mtAdRepository.getOne(id);
         String username = getUsername();
@@ -99,12 +96,17 @@ public class MotorcycleController {
         return "redirect:/main";
     }
 
-    @RequestMapping(path = "/main/motorcycle/delete/{id}", method = RequestMethod.GET)
+    @RequestMapping(path = "/main/motorcycles/delete/{id}", method = RequestMethod.GET)
     public String deleteMotorcycle(@PathVariable(name = "id") Long id) {
         mtAdRepository.deleteById(id);
 
         return "redirect:/main";
     }
 
+    @GetMapping("/main/motorcycles/{id}/show")
+    public String showCarId(@PathVariable(name = "id") Long id, Model model){
+        model.addAttribute("motorcycleAdvertisement", mtAdRepository.getOne(id));
+        return "main/show-a-motorcycle";
+    }
 
 }
