@@ -60,13 +60,6 @@ public class MotorcycleController {
         return "/main/motorcycles";
     }
 
-    @RequestMapping(path = "/main/add-new-motorcycle", method = RequestMethod.GET)
-    public String createMotorcycle(Model model) {
-        model.addAttribute("motorcycle", new CarAdvertisement());
-
-        return "add-new-motorcycle";
-    }
-
 
   @RequestMapping(path = "/main/motorcycles/main/forsale", method = RequestMethod.GET)
     public String getForSaleMotorcycles(Model model) {
@@ -107,6 +100,13 @@ public class MotorcycleController {
     public String showCarId(@PathVariable(name = "id") Long id, Model model){
         model.addAttribute("motorcycleAdvertisement", mtAdRepository.getOne(id));
         return "main/show-a-motorcycle";
+    }
+
+    @RequestMapping(path = "/main/add-new/add-new-motorcycle", method = RequestMethod.GET)
+    public String createCar(Model model) {
+        model.addAttribute("motorcycleAdvertisement", new CarAdvertisement());
+
+        return "add-new/add-new-motorcycle";
     }
 
 }

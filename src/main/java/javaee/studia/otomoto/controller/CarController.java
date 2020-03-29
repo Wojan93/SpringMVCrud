@@ -35,11 +35,11 @@ public class CarController {
         this.userPrincipal = userPrincipal;
     }
 
-    @RequestMapping(path = "/main/add-new-car", method = RequestMethod.GET)
+    @RequestMapping(path = "/main/add-new/add-new-car", method = RequestMethod.GET)
     public String createCar(Model model) {
         model.addAttribute("carAdvertisement", new CarAdvertisement());
 
-        return "add-new-car";
+        return "add-new/add-new-car";
     }
 
     @RequestMapping(path = "cars", method = RequestMethod.POST)
