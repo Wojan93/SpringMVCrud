@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
-    <title>Image Upload Form</title>
+    <title>Image Upload Form Moto</title>
     <th:block th:include="layout/header"></th:block>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -17,7 +17,7 @@
             crossorigin="anonymous" th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
 </head>
 <body>
-<!--/*@thymesVar id="carAdvertisement" type="javaee.studia.otomoto.model.CarAdvertisement"*/-->
+<!--/*@thymesVar id="motorcycleAdvertisement" type="javaee.studia.otomoto.model.MotorcycleAdvertisement"*/-->
 <div class="container" style="margin-top: 20px">
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
@@ -30,7 +30,7 @@
                         <div class="row">
                             <div class="col-md-5">
                                 <form  action="http:\\localhost" method="post" enctype="multipart/form-data"
-                                       th:action="@{'/main/cars/' + ${carAdvertisement.getId()} + '/image'}">
+                                       th:action="@{'/main/motorcycles/' + ${motorcycleAdvertisement.getId()} + '/image'}">
                                     <label class="control-label">Select File</label>
                                     <input id="imagefile" name="imagefile" type="file" class="file">
                                     <button type="submit" class="btn btn-primary">Submit</button>

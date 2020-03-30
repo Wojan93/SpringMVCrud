@@ -42,8 +42,8 @@ public class CarController {
         return "add-new/add-new-car";
     }
 
-    @RequestMapping(path = "cars", method = RequestMethod.POST)
-    public String saveCar(@Valid @ModelAttribute("car") CarAdvertisement carAdvertisement, BindingResult bindingResult) {
+    @RequestMapping(path = "/main", method = RequestMethod.POST)
+    public String saveCar(@Valid @ModelAttribute("carAdvertisement") CarAdvertisement carAdvertisement, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
             return "edit-car";
@@ -68,7 +68,7 @@ public class CarController {
 
     @RequestMapping(path = "/main/cars/edit/{id}", method = RequestMethod.GET)
     public String editCar(Model model, @PathVariable(value = "id") Long id) {
-        model.addAttribute("car", carAdRepository.findById(id));
+        model.addAttribute("carAdvertisement", carAdRepository.findById(id));
 
         return "edit-car";
     }

@@ -38,10 +38,10 @@ public class MotorcycleController {
     }
 
     @RequestMapping(path = "/main/motorcycles", method = RequestMethod.POST)
-    public String saveMotorcycle(@Valid @ModelAttribute("motorcycle") MotorcycleAdvertisement motorcycleAdvertisement, BindingResult bindingResult) {
+    public String saveMotorcycle(@Valid @ModelAttribute("motorcycleAdvertisement") MotorcycleAdvertisement motorcycleAdvertisement, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
-            return "edit-car";
+            return "edit-motorcycle";
         } else {
             String username = getUsername();
 
@@ -73,9 +73,9 @@ public class MotorcycleController {
 
     @RequestMapping(path = "/main/motorcycles/edit/{id}", method = RequestMethod.GET)
     public String editMotorcycle(Model model, @PathVariable(value = "id") Long id) {
-        model.addAttribute("motorcycle", mtAdRepository.findById(id));
+        model.addAttribute("motorcycleAdvertisement", mtAdRepository.findById(id));
 
-        return "edit-car";
+        return "edit-motorcycle";
     }
 
 
@@ -103,8 +103,8 @@ public class MotorcycleController {
     }
 
     @RequestMapping(path = "/main/add-new/add-new-motorcycle", method = RequestMethod.GET)
-    public String createCar(Model model) {
-        model.addAttribute("motorcycleAdvertisement", new CarAdvertisement());
+    public String createMotorcycle(Model model) {
+        model.addAttribute("motorcycleAdvertisement", new MotorcycleAdvertisement());
 
         return "add-new/add-new-motorcycle";
     }

@@ -4,14 +4,12 @@ import javaee.studia.otomoto.commands.CarCommand;
 import javaee.studia.otomoto.controller.ImageController;
 import javaee.studia.otomoto.service.CarService;
 import javaee.studia.otomoto.service.ImageService;
-import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -35,13 +33,7 @@ public class ImageTests {
 
     MockMvc mockMvc;
 
-    @Before
-    public void setUp() throws Exception {
-        MockitoAnnotations.initMocks(this);
 
-        controller = new ImageController(imageService, carService);
-        mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
-    }
 
     @Test
     public void getImageForm() throws Exception {
@@ -70,7 +62,7 @@ public class ImageTests {
                 .andExpect(status().is3xxRedirection())
                 .andExpect(header().string("Location", "/cars"));
 
-        verify(imageService, times(1)).saveImageFile(anyLong(), any());
+        verify(imageService, times(1)).saveImageFileCar(anyLong(), any());
     }
 
 

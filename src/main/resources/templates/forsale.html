@@ -65,17 +65,23 @@
                 <th class="th-sm" onclick="sortTable(4)" style="cursor:pointer">Price</th>
             </tr>
             <tr th:each="motorcycleAdvertisement : ${motorcycles}">
-                <td class="align-middle" sec:authorize="hasRole('ROLE_ADMIN')"
+                <td class="align-middle" sec:authorize="isAuthenticated() && !hasRole('ROLE_ADMIN')"
                     th:text="${motorcycleAdvertisement.id}">
                     Id
                 </td>
                 <td class="align-middle"><a th:text="${motorcycleAdvertisement.title}"
                                             th:href="${'/main/motorcycles/' + motorcycleAdvertisement.id + '/show'}"/>
                 </td>
-                <td class="align-middle" th:text="${motorcycleAdvertisement.motorcycleCompany}">Company</td>
-                <td class="align-middle" th:text="${motorcycleAdvertisement.model}">Model</td>
-                <td class="align-middle" th:text="${motorcycleAdvertisement.year}">Year</td>
-                <td class="align-middle" th:text="${motorcycleAdvertisement.price + ' zł'}">Price</td>
+                <td sec:authorize="hasRole('ROLE_ADMIN')" th:text="${motorcycleAdvertisement.id}">Id</td>
+                <td th:text="${motorcycleAdvertisement.motorcycleCompany}">Company</td>
+                <td th:text="${motorcycleAdvertisement.model}">Model</td>
+                <td th:text="${motorcycleAdvertisement.price}">Price</td>
+                <td th:text="${motorcycleAdvertisement.vinNumber}">Vin Number</td>
+                <td th:text="${motorcycleAdvertisement.colour}">Colour</td>
+                <td th:text="${motorcycleAdvertisement.year}">Year</td>
+                <td th:text="${motorcycleAdvertisement.motorCapacity}">Motor Capacity</td>
+                <td th:text="${motorcycleAdvertisement.kilometers}">Kilometers</td>
+                <td th:text="${motorcycleAdvertisement.phoneNumber}">Contact</td>
                 <td>
                     <div class="col-md-6">
                         <img src="../../static/images/audi.jpg"
@@ -83,7 +89,7 @@
                              width="200" height="200">
                     </div>
                 </td>
-                <td><a sec:authorize="hasRole('ROLE_ADMIN')"
+                <td><a sec:authorize="isAuthenticated() && !hasRole('ROLE_ADMIN')"
                        th:href="${'/main/motorcycles/edit/' + motorcycleAdvertisement.id}"
                        class="btn btn-warning">Edit</a></td>
             </tr>

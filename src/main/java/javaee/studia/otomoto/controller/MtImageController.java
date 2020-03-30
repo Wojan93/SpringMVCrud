@@ -1,9 +1,7 @@
 package javaee.studia.otomoto.controller;
 
 
-import javaee.studia.otomoto.commands.CarCommand;
 import javaee.studia.otomoto.commands.MotorcycleCommand;
-import javaee.studia.otomoto.service.CarService;
 import javaee.studia.otomoto.service.ImageService;
 import javaee.studia.otomoto.service.MtService;
 import lombok.extern.slf4j.Slf4j;
@@ -35,17 +33,17 @@ public class MtImageController {
 
     @GetMapping("/main/motorcycles/{id}/image")
     public String showUploadForm(@PathVariable String id, Model model) {
-        model.addAttribute("car", mtService.findCommandById(Long.valueOf(id)));
+        model.addAttribute("motorcycleAdvertisement", mtService.findCommandById(Long.valueOf(id)));
 
-        return "imageuploadform";
+        return "imageuploadform-moto";
     }
 
     @PostMapping("/main/motorcycles/{id}/image")
     public String handleImagePost(@PathVariable String id, @RequestParam("imagefile") MultipartFile file) {
 
-        imageService.saveImageFile(Long.valueOf(id), file);
+        imageService.saveImageFileMoto(Long.valueOf(id), file);
 
-        return "redirect:/main/motorcycles";
+        return "redirect:/main";
     }
 
     @GetMapping("/main/motorcycles/{id}/mtimage")

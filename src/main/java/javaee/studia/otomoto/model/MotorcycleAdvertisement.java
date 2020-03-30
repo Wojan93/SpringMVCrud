@@ -30,6 +30,7 @@ public class MotorcycleAdvertisement extends Advertisement {
 
     }
 
+ 
     @NotNull(message = "is required")
     @Enumerated(EnumType.STRING)
     private MotorcycleCompany motorcycleCompany;

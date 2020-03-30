@@ -23,6 +23,7 @@ public class ImageController {
     private final ImageService imageService;
     private final CarService carService;
 
+
     public ImageController(ImageService imageService, CarService carService) {
         this.imageService = imageService;
         this.carService = carService;
@@ -38,7 +39,7 @@ public class ImageController {
     @PostMapping("/main/cars/{id}/image")
     public String handleImagePost(@PathVariable String id, @RequestParam("imagefile") MultipartFile file) {
 
-        imageService.saveImageFile(Long.valueOf(id), file);
+        imageService.saveImageFileCar(Long.valueOf(id), file);
 
         return "redirect:/main";
     }
@@ -61,4 +62,5 @@ public class ImageController {
             IOUtils.copy(is, response.getOutputStream());
         }
     }
+
 }

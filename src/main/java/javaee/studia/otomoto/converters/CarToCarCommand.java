@@ -26,7 +26,7 @@ public class CarToCarCommand implements Converter<CarAdvertisement, CarCommand> 
 
         final CarCommand command = new CarCommand();
 
-
+        command.setId(source.getId());
         command.setCarCompany(source.getCarCompany());
         command.setModel(source.getModel());
         command.setTitle(source.getTitle());

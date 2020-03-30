@@ -27,6 +27,7 @@ public class MotorcycleCommandToMororcycle implements Converter<MotorcycleComman
 
         final MotorcycleAdvertisement motorcycleAdvertisement = new MotorcycleAdvertisement();
 
+        motorcycleAdvertisement.setId(source.getId());
         motorcycleAdvertisement.setMotorcycleCompany(source.getMotorcycleCompany());
         motorcycleAdvertisement.setModel(source.getModel());
         motorcycleAdvertisement.setTitle(source.getTitle());
