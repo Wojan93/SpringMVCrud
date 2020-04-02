@@ -6,7 +6,7 @@
 </head>
 <body>
 <div class="container">
-    <h2>Edit Product Details</h2>
+    <h2>Add new car advertisement</h2>
     <div>
         <form class="form-horizontal" th:object="${carAdvertisement}" th:action="@{/main}"
               method="post">
@@ -16,152 +16,174 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-2 control-label">Company:</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" th:field="*{carCompany}"/>
-                </div>
-            </div>
-            <div th:if="${#fields.hasErrors('carCompany')}"
-                 class="error">
-                <a th:each="err : ${#fields.errors('carCompany')}" th:text="${err}"/></a>
-            </div>
-
-            <div class="form-group">
-                <label class="col-sm-2 control-label">Model:</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" th:field="*{model}"/>
-                </div>
-            </div>
-            <div th:if="${#fields.hasErrors('model')}"
-                 class="error">
-                <a th:each="err : ${#fields.errors('model')}" th:text="${err}"/></a>
-            </div>
-
-            <div class="form-group">
                 <label class="col-sm-2 control-label">Title:</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" th:field="*{title}"/>
                 </div>
             </div>
-            <div th:if="${#fields.hasErrors('title')}"
-                 class="error">
-                <a th:each="err : ${#fields.errors('name')}" th:text="${err}"/></a>
-            </div>
-
             <div class="form-group">
-                <label class="col-sm-2 control-label">Price:</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" th:field="*{price}"/>
-                </div>
-            </div>
-            <div th:if="${#fields.hasErrors('price')}"
-                 class="error">
-                <a th:each="err : ${#fields.errors('price')}" th:text="${err}"/></a>
-            </div>
+                <label class="col-sm-2 control-label">Text Ad:</label>
+                <div class="col-sm-12">
+                    <input type="hidden" th:field="*{textAd}" />
+                    <!--          <textarea type="text" class="form-control" rows="8" cols="80" name="textAd" th:field="*{textAd}"></textarea> -->
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <label class="col-sm-2 control-label">Company:</label>
+                          <div class="col-sm-10">
+                              <select name="carCompany">
+                                  <option th:each="carCompanyOpt : ${T(javaee.studia.otomoto.model.enums.CarCompany).values()}"
+                                          th:value="${carCompanyOpt}" th:text="${carCompanyOpt.displayValue}"></option>
+                              </select>
+                          </div>
+                      </div>
+                      <div th:if="${#fields.hasErrors('carCompany')}"
+                           class="error">
+                          <a th:each="err : ${#fields.errors('carCompany')}" th:text="${err}"/></a>
+                      </div>
 
-            <div class="form-group">
-                <label class="col-sm-2 control-label">Vin Number:</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" th:field="*{vinNumber}"/>
-                </div>
-            </div>
-            <div th:if="${#fields.hasErrors('vinNumber')}"
-                 class="error">
-                <a th:each="err : ${#fields.errors('vinNumber')}" th:text="${err}"/></a>
-            </div>
+                      <div class="form-group">
+                          <label class="col-sm-2 control-label">Model:</label>
+                          <div class="col-sm-10">
+                              <input type="text" class="form-control" th:field="*{model}"/>
+                          </div>
+                      </div>
+                      <div th:if="${#fields.hasErrors('model')}"
+                           class="error">
+                          <a th:each="err : ${#fields.errors('model')}" th:text="${err}"/></a>
+                      </div>
+                      <div class="form-group">
+                          <label class="col-sm-2 control-label">Price:</label>
+                          <div class="col-sm-10">
+                              <input type="text" class="form-control" th:field="*{price}"/>
+                          </div>
+                      </div>
+                      <div th:if="${#fields.hasErrors('price')}"
+                           class="error">
+                          <a th:each="err : ${#fields.errors('price')}" th:text="${err}"/></a>
+                      </div>
 
-            <div class="form-group">
-                <label class="col-sm-2 control-label">Colour:</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" th:field="*{colour}"/>
-                </div>
-            </div>
-            <div th:if="${#fields.hasErrors('colour')}"
-                 class="error">
-                <a th:each="err : ${#fields.errors('colour')}" th:text="${err}"/></a>
-            </div>
+                      <div class="form-group">
+                          <label class="col-sm-2 control-label">Vin Number:</label>
+                          <div class="col-sm-10">
+                              <input type="text" class="form-control" th:field="*{vinNumber}"/>
+                          </div>
+                      </div>
+                      <div th:if="${#fields.hasErrors('vinNumber')}"
+                           class="error">
+                          <a th:each="err : ${#fields.errors('vinNumber')}" th:text="${err}"/></a>
+                      </div>
 
-            <div class="form-group">
-                <label class="col-sm-2 control-label">Year:</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" th:field="*{year}"/>
-                </div>
-            </div>
-            <div th:if="${#fields.hasErrors('year')}"
-                 class="error">
-                <a th:each="err : ${#fields.errors('year')}" th:text="${err}"/></a>
-            </div>
+                      <div class="form-group">
+                          <label class="col-sm-2 control-label">Colour:</label>
+                          <div class="col-sm-10">
+                              <select name="colour">
+                                  <option th:each="carColourOpt : ${T(javaee.studia.otomoto.model.enums.Colour).values()}"
+                                          th:value="${carColourOpt}" th:text="${carColourOpt.displayValue}"></option>
+                              </select>
+                          </div>
+                      </div>
+                      <div th:if="${#fields.hasErrors('colour')}"
+                           class="error">
+                          <a th:each="err : ${#fields.errors('colour')}" th:text="${err}"/></a>
+                      </div>
 
-            <div class="form-group">
-                <label class="col-sm-2 control-label">Motor Capacity:</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control"
-                           th:field="*{motorCapacity}"/>
-                </div>
-            </div>
-            <div th:if="${#fields.hasErrors('motorCapacity')}"
-                 class="error">
-                <a th:each="err : ${#fields.errors('motorCapacity')}" th:text="${err}"/></a>
-            </div>
+                      <div class="form-group">
+                          <label class="col-sm-2 control-label">Year:</label>
+                          <div class="col-sm-10">
+                              <input type="range" min="1980" max="2020" step="1" value="2000" class="slider" id="Year"
+                                     th:field="*{year}"/>
+                              <p><span id="year_span"></span></p>
+                          </div>
+                      </div>
+                      <script>
+                          var slider = document.getElementById("Year");
+                          var output = document.getElementById("year_span");
+                          output.innerHTML = slider.value; // Display the default slider value
 
-            <div class="form-group">
-                <label class="col-sm-2 control-label">Fuel Type:</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" th:field="*{fuelType}"/>
-                </div>
-            </div>
-            <div th:if="${#fields.hasErrors('fuelType')}"
-                 class="error">
-                <a th:each="err : ${#fields.errors('fuelType')}" th:text="${err}"/></a>
-            </div>
+                          // Update the current slider value (each time you drag the slider handle)
+                          slider.oninput = function () {
+                              output.innerHTML = this.value;
+                          }
+                      </script>
+                      <div class="form-group">
+                          <label class="col-sm-2 control-label">Motor Capacity:</label>
+                          <div class="col-sm-10">
+                              <input type="range" min="500" max="5000" step="100" value="2000" class="slider" id="MotorCapacity"
+                                     th:field="*{motorCapacity}"/>
+                              <p><span id="capacity_span"></span></p>
+                          </div>
+                      </div>
+                      <script>
+                          var slider1 = document.getElementById("MotorCapacity");
+                          var output1 = document.getElementById("capacity_span");
+                          output1.innerHTML = slider1.value; // Display the default slider value
 
-            <div class="form-group">
-                <label class="col-sm-2 control-label">Kilometers:</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" th:field="*{kilometers}"/>
-                </div>
-            </div>
-            <div th:if="${#fields.hasErrors('kilometers')}"
-                 class="error">
-                <a th:each="err : ${#fields.errors('kilometers')}" th:text="${err}"/></a>
-            </div>
+                          // Update the current slider value (each time you drag the slider handle)
+                          slider1.oninput = function () {
+                              output1.innerHTML = this.value;
+                          }
+                      </script>
 
-            <div class="form-group">
-                <label class="col-sm-2 control-label">Safety Lock:</label>
-                <div class="col-sm-10">
-                    <input type="checkbox" name="AluWheelsCheck" th:field="*{safetyLock}">
-                </div>
-            </div>
-            <div th:if="${#fields.hasErrors('safetyLock')}"
-                 class="error">
-                <a th:each="err : ${#fields.errors('safetyLock')}" th:text="${err}"/></a>
-            </div>
+                      <div class="form-group">
+                          <label class="col-sm-2 control-label">Fuel Type:</label>
+                          <div class="col-sm-10">
+                              <select name="fuelType">
+                                  <option th:each="fuelTypeOpt : ${T(javaee.studia.otomoto.model.enums.FuelType).values()}"
+                                          th:value="${fuelTypeOpt}" th:text="${fuelTypeOpt.displayValue}"></option>
+                              </select>
+                          </div>
+                      </div>
+
+                      <div class="form-group">
+                          <label class="col-sm-2 control-label">Kilometers:</label>
+                          <div class="col-sm-10">
+                              <input type="range" min="0" max="400000" step="1000" value="100000" class="slider" id="Kilometers"
+                                     th:field="*{kilometers}"/>
+                              <p><span id="kilometers_span"></span></p>
+                          </div>
+                      </div>
+                      <script>
+                          var slider2 = document.getElementById("Kilometers");
+                          var output2 = document.getElementById("kilometers_span");
+                          output2.innerHTML = slider2.value; // Display the default slider value
+
+                          // Update the current slider value (each time you drag the slider handle)
+                          slider2.oninput = function () {
+                              output2.innerHTML = this.value;
+                          }
+                      </script>
+                      <div class="form-group">
+                          <label class="col-sm-2 control-label">Safety Lock:</label>
+                          <div class="col-sm-10">
+                              <input type="checkbox" name="AluWheelsCheck" th:field="*{safetyLock}">
+                          </div>
+                      </div>
+
+                      <div class="form-group">
+                          <label class="col-sm-2 control-label">Alu Wheels: </label>
+                          <div class="col-sm-10">
+                              <input type="checkbox" name="AluWheelsCheck" th:field="*{aluWheels}">
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <label class="col-sm-2 control-label">Photo: </label>
+                          <div class="col-sm-10"><a class="btn btn-default" href="#"
+                                                    th:href="@{'/main/cars/' + ${id} + '/image'}" role="button">Change Image</a>
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <div class="col-sm-2">
+                              <button type="submit" class="btn btn-primary">Save</button>
+                          </div>
+                      </div>
+                  </form>
 
 
-            <div class="form-group">
-                <label class="col-sm-2 control-label">Alu Wheels: </label>
-                <div class="col-sm-10">
-                    <input type="checkbox" name="AluWheelsCheck" th:field="*{aluWheels}">
-                </div>
-            </div>
-            <div th:if="${#fields.hasErrors('aluWheels')}"
-                 class="error">
-                <a th:each="err : ${#fields.errors('aluWheels')}" th:text="${err}"/></a>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-2 control-label">Photo: </label>
-                <div class="col-sm-10"><a class="btn btn-default" href="#"
-                                          th:href="@{'/main/cars/' + ${id} + '/carimage'}" role="button">Change Image</a>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-2">
-                    <button type="submit" class="btn btn-primary">Save</button>
-                </div>
-            </div>
+              </div>
+          </div>
 
-        </form>
-    </div>
-</div>
-</body>
-</html>
+
+
+          </body>
+          </html>

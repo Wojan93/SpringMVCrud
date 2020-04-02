@@ -126,5 +126,39 @@ public class DataLoader implements CommandLineRunner {
         motorcycleAdvertisement1.setImage(byteToByteConv(new ClassPathResource("static/images/jawa-350.jpg")));
 
         mtAdRepository.save(motorcycleAdvertisement1);
+
+        MotorcycleAdvertisement motorcycleAdvertisement2 = new MotorcycleAdvertisement();
+
+        motorcycleAdvertisement2.setTitle("Suzuki Hayabusa");
+        motorcycleAdvertisement2.setTextAd("Najszybsze Suzuki Hayabusa");
+        motorcycleAdvertisement2.setMotorcycleCompany(MotorcycleCompany.SUZUKI);
+        motorcycleAdvertisement2.setModel("GSX 1300 Hayabusa");
+        motorcycleAdvertisement2.setColour(Colour.YELLOW);
+        motorcycleAdvertisement2.setVinNumber("SUZUKIGSX1300_504");
+        motorcycleAdvertisement2.setPrice(1290.00);
+        motorcycleAdvertisement2.setYear(1999);
+        motorcycleAdvertisement2.setMotorCapacity(1300);
+        motorcycleAdvertisement2.setKilometers(22300.40);
+        motorcycleAdvertisement2.setPhoneNumber("660554223");
+        motorcycleAdvertisement2.setImage(byteToByteConv(new ClassPathResource("static/images/Hayabusa.jpg")));
+
+        mtAdRepository.save(motorcycleAdvertisement2);
+
+        MotorcycleAdvertisement motorcycleAdvertisement3 = new MotorcycleAdvertisement();
+
+        motorcycleAdvertisement3.setTitle("YAMAHA MT-07");
+        motorcycleAdvertisement3.setTextAd("Miejski motocykl YAMAHA MT-07");
+        motorcycleAdvertisement3.setMotorcycleCompany(MotorcycleCompany.YAMAHA);
+        motorcycleAdvertisement3.setModel("MT-07");
+        motorcycleAdvertisement3.setColour(Colour.SILVER);
+        motorcycleAdvertisement3.setVinNumber("YAMAHAMT-077777777777");
+        motorcycleAdvertisement3.setPrice(20000.00);
+        motorcycleAdvertisement3.setYear(2013);
+        motorcycleAdvertisement3.setMotorCapacity(650);
+        motorcycleAdvertisement3.setKilometers(220.40);
+        motorcycleAdvertisement3.setPhoneNumber("669984223");
+        motorcycleAdvertisement3.setImage(byteToByteConv(new ClassPathResource("static/images/YAMAHA.JPG")));
+
+        mtAdRepository.save(motorcycleAdvertisement3);
     }
 }

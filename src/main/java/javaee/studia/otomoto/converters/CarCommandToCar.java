@@ -29,6 +29,7 @@ public class CarCommandToCar implements Converter<CarCommand, CarAdvertisement> 
         carAdvertisement.setCarCompany(source.getCarCompany());
         carAdvertisement.setModel(source.getModel());
         carAdvertisement.setTitle(source.getTitle());
+        carAdvertisement.setTextAd(source.getTextAd());
         carAdvertisement.setVinNumber(source.getVinNumber());
         carAdvertisement.setColour(source.getColour());
         carAdvertisement.setPrice(source.getPrice());
