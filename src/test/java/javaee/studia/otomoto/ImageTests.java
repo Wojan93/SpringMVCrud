@@ -1,7 +1,7 @@
 package javaee.studia.otomoto;
 
 import javaee.studia.otomoto.commands.CarCommand;
-import javaee.studia.otomoto.controller.ImageController;
+import javaee.studia.otomoto.controller.CarImageController;
 import javaee.studia.otomoto.service.CarService;
 import javaee.studia.otomoto.service.ImageService;
 import org.junit.Test;
@@ -29,7 +29,7 @@ public class ImageTests {
     @Mock
     CarService carService;
 
-    ImageController controller;
+    CarImageController controller;
 
     MockMvc mockMvc;
 

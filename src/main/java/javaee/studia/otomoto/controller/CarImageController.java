@@ -18,20 +18,20 @@ import java.io.InputStream;
 
 @Slf4j
 @Controller
-public class ImageController {
+public class CarImageController {
 
     private final ImageService imageService;
     private final CarService carService;
 
 
-    public ImageController(ImageService imageService, CarService carService) {
+    public CarImageController(ImageService imageService, CarService carService) {
         this.imageService = imageService;
         this.carService = carService;
     }
 
     @GetMapping("/main/cars/{id}/image")
     public String showUploadForm(@PathVariable String id, Model model) {
-        model.addAttribute("car", carService.findCommandById(Long.valueOf(id)));
+        model.addAttribute("carAdvertisement", carService.findCommandById(Long.valueOf(id)));
 
         return "imageuploadform";
     }

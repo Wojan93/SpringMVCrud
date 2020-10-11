@@ -24,11 +24,12 @@
                 <th>Safety Lock</th>
                 <th>Alu Wheels</th>
                 <th>Contact</th>
+                <th>Image</th>
             </tr>
             <tr th:each="carAdvertisement : ${cars}">
                 <td sec:authorize="hasRole('ROLE_ADMIN')" th:text="${carAdvertisement.id}">Id</td>
                 <td > <a th:text="${carAdvertisement.title}"
-                         th:href="${'/main/motorcycles/' + carAdvertisement.id + '/show'}"/>Title</td>
+                         th:href="${'/main/cars/' + carAdvertisement.id + '/show'}"/>Title</td>
                 <td th:text="${carAdvertisement.carCompany}">Company</td>
                 <td th:text="${carAdvertisement.model}">Model</td>
                 <td th:text="${carAdvertisement.price}">Price</td>
@@ -42,69 +43,69 @@
                 <td th:text="${carAdvertisement.aluWheels}">Alu Wheels</td>
                 <td th:text="${carAdvertisement.phoneNumber}">Contact</td>
                 <td>
-                    <div th:if="${not #lists.isEmpty(cars)}" class="col-md-6">
-                        <img src="../../static/images/audi.jpg"
-                             th:src="@{'/cars/' + ${carAdvertisement.id} + '/carimage'}"
-                             width="200" height="200">
-                    </div>
-                </td>
-            </tr>
-        </table>
-    </div>
-    <div th:if="${not #lists.isEmpty(motorcycles)}">
-        <h2>All Motorcycles</h2>
-        <table id="MotorcyclesTable" class="table table-striped table-bordered table-sm" cellspacing="0"
-               width="80%">
-            <tr>
-                <th class="th-sm" style="cursor:pointer" sec:authorize="hasRole('ROLE_ADMIN')">Id</th>
-                <th class="th-sm">Title</th>
-                <th class="th-sm">Company</th>
-                <th class="th-sm">Model</th>
-                <th class="th-sm">Price</th>
-                <th class="th-sm">VinNumber</th>
-                <th class="th-sm">Colour</th>
-                <th class="th-sm">Year</th>
-                <th class="th-sm">Motor Capacity</th>
-                <th class="th-sm">Kilometers</th>
-                <th class="th-sm">Contact</th>
-                <th class="th-sm">Image</th>
-            </tr>
-            <tr th:each="motorcycleAdvertisement : ${motorcycles}">
-                <td class="align-middle" sec:authorize="hasRole('ROLE_ADMIN')"
-                    th:text="${motorcycleAdvertisement.id}">
-                    Id
-                </td>
-                <td class="align-middle"><a th:text="${motorcycleAdvertisement.title}"
-                                            th:href="${'/main/motorcycles/' + motorcycleAdvertisement.id + '/show'}"/>
-                </td>
-                <td sec:authorize="hasRole('ROLE_ADMIN')" th:text="${motorcycleAdvertisement.id}">Id</td>
-                <td th:text="${motorcycleAdvertisement.motorcycleCompany}">Company</td>
-                <td th:text="${motorcycleAdvertisement.model}">Model</td>
-                <td th:text="${motorcycleAdvertisement.price}">Price</td>
-                <td th:text="${motorcycleAdvertisement.vinNumber}">Vin Number</td>
-                <td th:text="${motorcycleAdvertisement.colour}">Colour</td>
-                <td th:text="${motorcycleAdvertisement.year}">Year</td>
-                <td th:text="${motorcycleAdvertisement.motorCapacity}">Motor Capacity</td>
-                <td th:text="${motorcycleAdvertisement.kilometers}">Kilometers</td>
-                <td th:text="${motorcycleAdvertisement.phoneNumber}">Contact</td>
-                <td>
                     <div class="col-md-6">
                         <img src="../../static/images/audi.jpg"
-                             th:src="@{'/main/motorcycles/' + ${motorcycleAdvertisement.id} + '/mtimage'}"
+                             th:src="@{'/main/cars/' + ${carAdvertisement.id} + '/carimage'}"
                              width="200" height="200">
                     </div>
                 </td>
-                <td><a sec:authorize="hasRole('ROLE_ADMIN')"
-                       th:href="${'/main/motorcycles/edit/' + motorcycleAdvertisement.id}"
-                       class="btn btn-warning">Edit</a></td>
-                <td><a sec:authorize="hasRole('ROLE_ADMIN')"
-                       th:href="${'/main/motorcycles/delete/' + motorcycleAdvertisement.id}"
-                       class="btn btn-danger">Delete</a></td>
-                </td>
-            </tr>
-        </table>
+               </tr>
+           </table>
+       </div>
+       <div th:if="${not #lists.isEmpty(motorcycles)}">
+           <h2>All Motorcycles</h2>
+           <table id="MotorcyclesTable" class="table table-striped table-bordered table-sm" cellspacing="0"
+                  width="80%">
+               <tr>
+                   <th class="th-sm" style="cursor:pointer" sec:authorize="hasRole('ROLE_ADMIN')">Id</th>
+                   <th class="th-sm">Title</th>
+                   <th class="th-sm">Company</th>
+                   <th class="th-sm">Model</th>
+                   <th class="th-sm">Price</th>
+                   <th class="th-sm">VinNumber</th>
+                   <th class="th-sm">Colour</th>
+                   <th class="th-sm">Year</th>
+                   <th class="th-sm">Motor Capacity</th>
+                   <th class="th-sm">Kilometers</th>
+                   <th class="th-sm">Contact</th>
+                   <th class="th-sm">Image</th>
+               </tr>
+               <tr th:each="motorcycleAdvertisement : ${motorcycles}">
+                   <td class="align-middle" sec:authorize="hasRole('ROLE_ADMIN')"
+                       th:text="${motorcycleAdvertisement.id}">
+                       Id
+                   </td>
+                   <td class="align-middle"><a th:text="${motorcycleAdvertisement.title}"
+                                               th:href="${'/main/motorcycles/' + motorcycleAdvertisement.id + '/show'}"/>
+                   </td>
+                   <td sec:authorize="hasRole('ROLE_ADMIN')" th:text="${motorcycleAdvertisement.id}">Id</td>
+                   <td th:text="${motorcycleAdvertisement.motorcycleCompany}">Company</td>
+                   <td th:text="${motorcycleAdvertisement.model}">Model</td>
+                   <td th:text="${motorcycleAdvertisement.price}">Price</td>
+                   <td th:text="${motorcycleAdvertisement.vinNumber}">Vin Number</td>
+                   <td th:text="${motorcycleAdvertisement.colour}">Colour</td>
+                   <td th:text="${motorcycleAdvertisement.year}">Year</td>
+                   <td th:text="${motorcycleAdvertisement.motorCapacity}">Motor Capacity</td>
+                   <td th:text="${motorcycleAdvertisement.kilometers}">Kilometers</td>
+                   <td th:text="${motorcycleAdvertisement.phoneNumber}">Contact</td>
+                   <td>
+                       <div class="col-md-6">
+                           <img src="../../static/images/audi.jpg"
+                                th:src="@{'/main/motorcycles/' + ${motorcycleAdvertisement.id} + '/mtimage'}"
+                                width="200" height="200">
+                       </div>
+                   </td>
+                   <td><a sec:authorize="hasRole('ROLE_ADMIN')"
+                          th:href="${'/main/motorcycles/edit/' + motorcycleAdvertisement.id}"
+                          class="btn btn-warning">Edit</a></td>
+                   <td><a sec:authorize="hasRole('ROLE_ADMIN')"
+                          th:href="${'/main/motorcycles/delete/' + motorcycleAdvertisement.id}"
+                          class="btn btn-danger">Delete</a></td>
+                   </td>
+               </tr>
+           </table>
 
-    </div>
-</div>
-</body>
-</html>
+       </div>
+   </div>
+   </body>
+   </html>
