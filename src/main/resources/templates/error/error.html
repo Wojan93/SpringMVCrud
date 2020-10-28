@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Error page</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{/css/style.css}" href="../../static/css/style.css"/>
+</head>
+<body th:with="httpStatus=${T(org.springframework.http.HttpStatus).valueOf(#response.status)}">
+<div class="notfound">
+    <div class="notfound-404"></div>
+    <h1 th:text="|${httpStatus} - ${httpStatus.reasonPhrase}|">404</h1>
+<!--/*@thymesVar id="errorMessage" type=""*/-->
+<h2>Oops! Page Not Be Found</h2>
+<p>Sorry but the page you are looking for does not exist, have been removed. name changed or is temporarily unavailable</p>
+
+<img src="/images/zlom.jpg" width="300" height="300">
+<p th:utext="${errorMessage}">Error java.lang.NullPointerException</p>
+<a href="index.html" th:href="@{/}">Back to Home Page</a>
+</div>
+</body>
+</html>

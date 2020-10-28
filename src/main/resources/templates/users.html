@@ -27,13 +27,14 @@
                 <td th:text="${user.active}">Active</td>
                 <td th:text="${user.roles}">Roles</td>
                 <td th:text="${user.username}">Username</td>
-                <td th:text="${user.fullname}">Full namer</td>
+                <td th:text="${user.fullName}">Full namer</td>
                 <td th:text="${user.email}">Email</td>
                 <td th:text="${user.phoneNumber}">Phone number</td>
-                <td th:text="${user.city}">City</td>
-                <td th:text="${user.state}">State</td>
-                <td th:text="${user.street}">Street</td>
-                <td th:text="${user.zip}">Zip code</td>
+                <td th:text="${user.address.city}">City</td>
+                <td th:text="${user.address.state}">State</td>
+                <td th:text="${user.address.street}">Street</td>
+                <td th:text="${user.address.zip}">Zip Code</td>
+
                 <td><a sec:authorize="hasRole('ROLE_ADMIN')" th:href="${'/admin/delete/' + user.id}" class="btn btn-danger">Delete</a></td>
             </tr>
         </table>

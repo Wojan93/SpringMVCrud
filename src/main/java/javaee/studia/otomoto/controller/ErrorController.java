@@ -1,15 +1,14 @@
 package javaee.studia.otomoto.controller;
 
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ControllerAdvice;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.*;
 
-
-
+@Controller
 @ControllerAdvice
 public class ErrorController {
 
@@ -21,7 +20,12 @@ public class ErrorController {
         logger.error("Exception during execution of SpringSecurity application", throwable);
         String errorMessage = (throwable != null ? throwable.getMessage() : "Unknown error");
         model.addAttribute("errorMessage", errorMessage);
-        return "error";
+        return "error/error";
+    }
+
+    @RequestMapping({"error", "error/error"})
+    public String errorPage() {
+        return "error/error";
     }
 
 }
